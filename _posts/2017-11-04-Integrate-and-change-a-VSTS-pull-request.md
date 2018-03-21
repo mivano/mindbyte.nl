@@ -2,7 +2,7 @@
 published: true
 title: Integrate and change a VSTS pull request
 tags:
-  - vsts
+  - VSTS
 header:
   image: /images/vstsprstatus.png
 published_at: {}
