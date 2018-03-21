@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Application Insights release annotations from Linux
 header:
   image: 'https://mindbyte.nl/images/appinsightmarkers.png'
