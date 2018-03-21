@@ -19,11 +19,11 @@ The capabilities in Application Insights are, compared to for example New Relic,
 ## Application Insights
 In Application Insights you get, for now, markers in the graphs. This is visible in for example the servers chart:
 
-![]({{site.baseurl}}//images/appinsightsmarkers.png)
+![](/images/appinsightsmarkers.png)
 
 When you click on a marker, you get additional properties like the name of the person who deployed, or the branch it originated from. You can specify these properties yourself.
 
-![]({{site.baseurl}}/appinsightmarkerproperties.png)
+![](/images/appinsightmarkerproperties.png)
 
 ## Set a Release Annotation marker
 Microsoft released two different options for setting the release marker event; a [Visual Studio Online build Task](https://marketplace.visualstudio.com/items?itemName#ms-appinsights.appinsightsreleaseannotations) or a [Powershell script](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1).
