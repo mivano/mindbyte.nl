@@ -1,11 +1,11 @@
 ---
-published: false
+published: true
 title: Integrate and change a VSTS pull request
 tags:
   - vsts
 header:
   image: /images/vstsprstatus.png
-published_at: 2017-11-04T00:00:00.000Z
+published_at: {}
 ---
 
 You might have seen it with GitHub; when you do a pull request there will most likely be a build being kicked off and that influences the state of the pull request. A failed build (or any other check) is shown on the [Pull Request page](https://developer.github.com/v3/guides/building-a-ci-server/).
