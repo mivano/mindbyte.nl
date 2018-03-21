@@ -4,7 +4,7 @@ title: Application Insights release annotations from Linux
 header:
   image: /images/appinsightmarkers.png
 tags:
-  - vsts
+  - VSTS
   - appinsights
   - monitoring
 ---
