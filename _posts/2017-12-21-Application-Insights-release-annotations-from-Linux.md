@@ -2,7 +2,7 @@
 published: true
 title: Application Insights release annotations from Linux
 header:
-  image: 'https://mindbyte.nl/images/appinsightmarkers.png'
+  image: /images/appinsightmarkers.png
 tags:
   - vsts
   - appinsights
@@ -19,7 +19,7 @@ The capabilities in Application Insights are, compared to for example New Relic,
 ## Application Insights
 In Application Insights you get, for now, markers in the graphs. This is visible in for example the servers chart:
 
-![](/images/appinsightsmarkers.png)
+![](/images/appinsightmarkers.png)
 
 When you click on a marker, you get additional properties like the name of the person who deployed, or the branch it originated from. You can specify these properties yourself.
 
