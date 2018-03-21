@@ -1,25 +1,32 @@
-# Application Insights release annotations from Linux
-:hp-image: https://mindbyte.nl/images/appinsightmarkers.png
-:hp-tags: vsts, appinsights, monitoring
+---
+published: false
+title: Application Insights release annotations from Linux
+header:
+  image: 'https://mindbyte.nl/images/appinsightmarkers.png'
+tags:
+  - vsts
+  - appinsights
+  - monitoring
+---
 
 Application Insights provides an enormous amount of information about your application, infrastructure, users etc. It can be difficult to see if a recent change or deployment caused a certain effect. Like; did the last release increased or decreased the performance or did the error rate went up or down.
 
 A number of application performance monitoring systems have a functionality which allows you to mark releases. This basically stores an event which allows you to easily identify the changes before and after.
-In New Relic they are called https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/recording-deployments[deployments], in Raygun, it is https://raygun.com/docs/deployments[Deployment Tracking] and in Application Insight it is called https://docs.microsoft.com/en-us/azure/application-insights/app-insights-annotations[Release annotations].
+In New Relic they are called [deployments](https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/recording-deployments), in Raygun, it is [Deployment Tracking](https://raygun.com/docs/deployments) and in Application Insight it is called [Release annotations](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-annotations).
 
 The capabilities in Application Insights are, compared to for example New Relic, pretty basic. In New Relic you can more clearly see the effect between different transactions caused by a deployment.
 
 ## Application Insights
 In Application Insights you get, for now, markers in the graphs. This is visible in for example the servers chart:
 
-image::appinsightmarkers.png[]
+![]({{site.baseurl}}//images/appinsightsmarkers.png)
 
 When you click on a marker, you get additional properties like the name of the person who deployed, or the branch it originated from. You can specify these properties yourself.
 
-image::appinsightmarkerproperties.png[]
+![]({{site.baseurl}}/appinsightmarkerproperties.png)
 
 ## Set a Release Annotation marker
-Microsoft released two different options for setting the release marker event; a https://marketplace.visualstudio.com/items?itemName#ms-appinsights.appinsightsreleaseannotations[Visual Studio Online build Task] or a https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1[Powershell script].
+Microsoft released two different options for setting the release marker event; a [Visual Studio Online build Task](https://marketplace.visualstudio.com/items?itemName#ms-appinsights.appinsightsreleaseannotations) or a [Powershell script](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1).
 
 However, when you use a Linux build agent you are out of luck. An option would be to add a Windows agent to the mix as nowadays you can have different phases in your build, but it is also possible to use a bash script to accomplish the same.
 
