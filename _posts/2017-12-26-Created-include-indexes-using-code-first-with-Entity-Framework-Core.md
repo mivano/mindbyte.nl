@@ -1,15 +1,18 @@
 ---
-title: Create indexes with included columns with Entity Framework Core using code first
-tags: 
+title: >-
+  Create indexes with included columns with Entity Framework Core using code
+  first
+tags:
   - ef
   - dotnet
 header:
   image: images/efcoreinclude.png
+published: true
 ---
 
 Entity Framework allows you to use a code first approach in creating your database design. Basically, you create your classes, maybe add some annotations and let the Entity Framework tools do the work for you by creating migration files and updating the database.
 
-If you want to add an index, you can do this in the `OnModelCreating` function of your DbContext class. However, if you need to create an index with [Include options](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/create-indexes-with-included-columns) then you are not able to do this. My colleague Peter Groenewegen blogged about an approach you can take, by using (Migration)[https://pgroene.wordpress.com/2017/12/04/add-index-with-include-entity-framework-core-2-0/] files. Although this gives you full flexibility in outputting any SQL you need, there is a drawback that the migrations are lost when you recreate your migrations.
+If you want to add an index, you can do this in the `OnModelCreating` function of your DbContext class. However, if you need to create an index with [Include options](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/create-indexes-with-included-columns) then you are not able to do this. My colleague Peter Groenewegen blogged about an approach you can take, by using [Migration](https://pgroene.wordpress.com/2017/12/04/add-index-with-include-entity-framework-core-2-0/) files. Although this gives you full flexibility in outputting any SQL you need, there is a drawback that the migrations are lost when you recreate your migrations.
 
 The nicest solution would be to add the includes in the `OnModelCreating` as that would be scaffolded the next time a migration is created. Luckily it is possible to add some logic that allows us to do this.
 
@@ -185,9 +188,4 @@ You see that the last CreateIndex contains the annotation with the name *SqlServ
 
 As shown, you can extend the scaffolding and code generation part of Entity Framework Core (in this case version 2.0.1). If you want to add additional statements you might be able to get some inspiration from this code. However, be aware that most of these APIs are internal and not supposed to be called directly. Meaning it can change in newer versions of Entity Framework.
 
-You can find all the code in the (GitHub repro)[https://github.com/mivano/EFIndexInclude].
-
-
-
-
-
+You can find all the code in the [GitHub repro](https://github.com/mivano/EFIndexInclude).
