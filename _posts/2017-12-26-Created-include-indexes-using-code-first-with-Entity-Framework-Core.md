@@ -9,6 +9,8 @@ header:
   image: images/efcoreinclude.png
 published: true
 classes: wide
+permalink: >-
+  /2017/12/26/Create-indexes-with-included-columns-with-Entity-Framework-Core-using-code-first.html
 ---
 
 Entity Framework allows you to use a code first approach in creating your database design. Basically, you create your classes, maybe add some annotations and let the Entity Framework tools do the work for you by creating migration files and updating the database.
