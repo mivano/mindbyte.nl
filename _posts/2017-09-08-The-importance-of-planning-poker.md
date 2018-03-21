@@ -1,6 +1,9 @@
-:hp-tags: scrum
-
-# The importance of planning poker
+---
+published: true
+tags:
+  - scrum
+title: The importance of planning poker
+---
 
 When you practice the scrum process, then one of the artifacts is planning poker. It is a method to gather estimates for the stories and with teams new to scrum it is always a tricky journey how to use this efficiently.
 
@@ -52,7 +55,3 @@ Try not to do refinement during the planning phase (in which you should decide w
 ## Conclusion
 
 Planning poker is an essential part of scrum as it gives us not only relative values to stories, but it is also a consensus based way to have a discussion about the way the story will be completed. Not doing it, or even without hiding the cards, will lead to incorrect estimations and assumptions and in the end to an unknown and not shared way of how to implement the story.
-
-
-
-
