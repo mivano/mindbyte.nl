@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Retrieve an OAuth client token from Azure AD using Runscope
 tags:
   - azure
