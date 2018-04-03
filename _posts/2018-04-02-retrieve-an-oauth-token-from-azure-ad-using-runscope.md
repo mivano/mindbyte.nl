@@ -6,6 +6,13 @@ tags:
   - security
 header:
   image: /images/runscopeteststep.png
+excerpt: >-
+  Runscope is a great online tool to validate and test API endpoints. For a
+  recent project, we are using it to mimic traffic from an external system that
+  is supposed to submit XML files to our application. The application, however,
+  requires an authorization token with a valid JWT to authenticate and authorize
+  the caller. As there is a lifetime on those tokens, we need to retrieve a new
+  one each time we start a test. Luckily that is not too difficult in Runscope.
 ---
 [Runscope](http://www.runscope.com) is a great online tool to validate and test API endpoints. For a recent project, we are using it to mimic traffic from an external system that is supposed to submit XML files to our application.
 
