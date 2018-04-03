@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Override docker-compose port numbers
 tags:
   - docker
@@ -75,4 +75,4 @@ services:
       - "5672:5672"
 ```
 
-For your own override, you use the first method again; have your settings in its own yaml file and include this with the `docker-compose -f docker-compose.yml -f docker-compose.username.yml up` command. In this case, the override file will be ignored and the port numbers from your file will be used. 
+For your own override, you use the first method again; have your settings in its own yaml file and include this with the `docker-compose -f docker-compose.yml -f docker-compose.username.yml up` command. In this case, the override file will be ignored and the port numbers from your file will be used.
