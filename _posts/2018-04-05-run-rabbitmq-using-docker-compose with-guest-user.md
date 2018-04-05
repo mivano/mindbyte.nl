@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Run RabbitMQ using Docker Compose with guest user outside localhost
 tags:
   - docker
@@ -56,4 +56,4 @@ The contents of the `rabbitmq-isolated.conf`:
 
 When you now run `docker-compose up` the RabbitMQ container with the right config will be started and guest access is possible from over the network. 
 
-> NOTE this default setting to only allow guest access from localhost is there for a reason. Be very aware when you allow access from outside localhost. 
+> NOTE this default setting to only allow guest access from localhost is there for a reason. Be very aware when you allow access from outside localhost.
