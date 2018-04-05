@@ -286,10 +286,7 @@ compress_html:
     envs: development
 
 prose:
-  rooturl: '_posts'
-  siteurl: 'https://mindbyte.nl/'
-  relativeLinks: 'https://mindbyte.nl/links.jsonp'
-  media: 'media'
+  media: 'images'
   metadata:
     _posts:
       - name: "category"
@@ -304,11 +301,6 @@ prose:
         field:
           element: "text"
           label: "Title"
-          value: ""
-      - name: "splash"
-        field:
-          element: "text"
-          label: "Splash image"
           value: ""
       - name: "tags"
         field:
