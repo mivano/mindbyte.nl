@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/mivano
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.mindbyte.nl
+  * I am mivano (https://keybase.io/mivano) on keybase.
+  * I have a public key ASBxkag1B5son-bLv9hT0mv6JsdDa1mufhYAp8NQHX7YPgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01207385bbd36244d9d00a180aa47ef7d239f33f9357e30225425736b529041981580a",
+      "host": "keybase.io",
+      "kid": "01207191a835079b289fe6cbbfd853d26bfa26c7436b59ae7e1600a7c3501d7ed83e0a",
+      "uid": "58b4374bf0c6a3509816548c7dc76f19",
+      "username": "mivano"
+    },
+    "merkle_root": {
+      "ctime": 1524316976,
+      "hash": "406b6388bfcd3df57fc92932c19d2f632ce7a5e8334c12ba625851ba2e64f24c797dd5366d07e397299047a92c6a4f416b33ed85062d02c46e4fdf22d6358a02",
+      "hash_meta": "f11ff7fb7ba681fa4ef74c537cc3076d0869302fb72b4548102af25308fbbbe6",
+      "seqno": 2422908
+    },
+    "service": {
+      "entropy": "51a2rZOUu/eXd5KZN+XmIwNa",
+      "hostname": "www.mindbyte.nl",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.47"
+  },
+  "ctime": 1524316999,
+  "expire_in": 504576000,
+  "prev": "7e8b4c484141c87cf9e7f163f60a73762331915e7a30260270e90850d7fdc155",
+  "seqno": 14,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgcZGoNQebKJ/my7/YU9Jr+ibHQ2tZrn4WAKfDUB1+2D4Kp3BheWxvYWTESpcCDsQgfotMSEFByHz55/Fj9gpzdiMxkV56MCYCcOkIUNf9wVXEII4jEvdiQei5OVNG6GrzuDw5rfUUiNcV3k4HaZcJ6FUvAgHCo3NpZ8RAEwNibYHIKP136xm8iOXCT8VFIuxZYW7MdwrpMARrtgXvt99g2XgzcXfYIoiF+mEVSmkvcPbx7JgGtvFn2KVzA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIBQLSOXHUnAqR/YMfKQwwgitvQsaMTOD7nwDuvHJ4cHOo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mivano
+
+==================================================================
