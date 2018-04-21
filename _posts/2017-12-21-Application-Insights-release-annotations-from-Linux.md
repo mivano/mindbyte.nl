@@ -1,4 +1,6 @@
 ---
+layout: blog
+category: blog
 published: true
 title: Application Insights release annotations from Linux
 header:
@@ -37,16 +39,16 @@ uuid()
 {
     local N B T
 
-    for (( N#0; N < 16; ++N ))
+    for (( N=0; N < 16; ++N ))
     do
-        B#$(( $RANDOM%255 ))
+        B=$(( $RANDOM%255 ))
 
-        if (( N ## 6 ))
+        if (( N == 6 ))
         then
             printf '4%x' $(( B%15 ))
-        elif (( N ## 8 ))
+        elif (( N == 8 ))
         then
-            local C#'89ab'
+            local C='89ab'
             printf '%c%x' ${C:$(( $RANDOM%${#C} )):1} $(( B%15 ))
         else
             printf '%02x' $B
@@ -54,7 +56,7 @@ uuid()
 
         for T in 3 5 7 9
         do
-            if (( T ## N ))
+            if (( T == N ))
             then
                 printf '-'
                 break
@@ -65,20 +67,20 @@ uuid()
     echo
 }
 
-apikey#"<replace with your apikey>"
-applicationId#"<replace with your applicationId>"
-releaseName#"Release X"
-releaseDescription#"Release deployed by VSOnline"
-triggerBy#"User"
-eventTime#`date '+%Y-%m-%dT%H:%M:%S' -u`
-category#"Deployment"
-id#$(uuid)
-grpEnv#$(curl -Ls -o /dev/null -w %{url_effective} "http://go.microsoft.com/fwlink/?prd#11901&pver#1.0&sbp#Application%20Insights&plcid#0x409&clcid#0x409&ar#Annotations&sar#Create%20Annotation")
-location#"$grpEnv/applications/$applicationId/Annotations?api-version#2015-11"
+apikey="<replace with your apikey>"
+applicationId="<replace with your applicationId>"
+releaseName="Release X"
+releaseDescription="Release deployed by VSOnline"
+triggerBy="User"
+eventTime=`date '+%Y-%m-%dT%H:%M:%S' -u`
+category="Deployment"
+id=$(uuid)
+grpEnv=$(curl -Ls -o /dev/null -w %{url_effective} "http://go.microsoft.com/fwlink/?prd=11901&pver=1.0&sbp=Application%20Insights&plcid=0x409&clcid=0x409&ar=Annotations&sar=Create%20Annotation")
+location="$grpEnv/applications/$applicationId/Annotations?api-version=2015-11"
 
-data#'{ "Id": "'$id'", "AnnotationName": "'$releaseName'", "EventTime":"'$eventTime'", "Category":"'$category'", "Properties":"{ \"ReleaseName\":\"'$releaseName'\", \"ReleaseDescription\" : \"'$releaseDescription'\", \"TriggerBy\": \"'$triggerBy'\" }"}'
+data='{ "Id": "'$id'", "AnnotationName": "'$releaseName'", "EventTime":"'$eventTime'", "Category":"'$category'", "Properties":"{ \"ReleaseName\":\"'$releaseName'\", \"ReleaseDescription\" : \"'$releaseDescription'\", \"TriggerBy\": \"'$triggerBy'\" }"}'
 echo $data
-curl -X PUT -H "X-AIAPIKEY: $apikey" -H "Content-Type: application/json; charset#UTF-8" --data "$data" $location
+curl -X PUT -H "X-AIAPIKEY: $apikey" -H "Content-Type: application/json; charset=UTF-8" --data "$data" $location
 ```
 
 This is a pretty basic script, missing validations, error handling etc, but it is to show you how to call the API, which is currently not documented, from a shell script so you can do this from a Linux machine.
