@@ -1,6 +1,4 @@
 ---
-layout: blog
-category: blog
 published: true
 title: Application Insights release annotations from Linux
 header:
