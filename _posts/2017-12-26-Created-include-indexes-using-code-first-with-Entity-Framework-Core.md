@@ -30,7 +30,7 @@ First, we create a method extension
     {
         public static IndexBuilder Include<TEntity>(this IndexBuilder indexBuilder, Expression<Func<TEntity, object>> indexExpression)
         {                                                                         
-            var includeStatement # new StringBuilder();
+            var includeStatement = new StringBuilder();
             foreach (var column in indexExpression.GetPropertyAccessList())
             {
                 if (includeStatement.Length > 0)
@@ -52,8 +52,8 @@ Now we can create a new index in the `OnModelCreating` like this:
 
 ```csharp
   modelBuilder.Entity<Employee>()
-                .HasIndex(rrs #> rrs.LastName)
-                .Include<Employee>(rrs #> new
+                .HasIndex(rrs => rrs.LastName)
+                .Include<Employee>(rrs => new
                 {
                     rrs.Address,
                     rrs.City,
@@ -75,8 +75,8 @@ The annotations alone won't help us, we need to output the correct SQL for it. W
 
         public override IEnumerable<IAnnotation> For(IIndex index)
         {
-            var baseAnnotations # base.For(index);
-            var customAnnotations # index.GetAnnotations().Where(a #> a.Name ## "SqlServer:IncludeIndex");
+            var baseAnnotations = base.For(index);
+            var customAnnotations = index.GetAnnotations().Where(a => a.Name == "SqlServer:IncludeIndex");
 
             return baseAnnotations.Concat(customAnnotations);
         }
@@ -90,7 +90,7 @@ To generate the index SQL code, we need to extend the `SqlServerMigrationsSqlGen
 ```csharp
  class ExtendedSqlServerMigrationsSqlGenerator : SqlServerMigrationsSqlGenerator
     {
-        protected virtual string StatementTerminator #> ";";
+        protected virtual string StatementTerminator => ";";
 
         public ExtendedSqlServerMigrationsSqlGenerator(MigrationsSqlGeneratorDependencies dependencies, IMigrationsAnnotationProvider migrationsAnnotations) :
             base(dependencies, migrationsAnnotations)
@@ -102,9 +102,9 @@ To generate the index SQL code, we need to extend the `SqlServerMigrationsSqlGen
         {
             base.Generate(operation, model, builder, false);
 
-            var includeIndexAnnotation # operation.FindAnnotation("SqlServer:IncludeIndex");
+            var includeIndexAnnotation = operation.FindAnnotation("SqlServer:IncludeIndex");
 
-            if (includeIndexAnnotation !# null)
+            if (includeIndexAnnotation != null)
                 builder.Append($" INCLUDE({includeIndexAnnotation.Value})");
           
             if (terminate)
@@ -123,7 +123,7 @@ We need to tell Entity Framework to use these classes instead of the default cla
 ```csharp
  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server#(localdb)\mssqllocaldb;Database#MyDatabase;Trusted_Connection#True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database#MyDatabase;Trusted_Connection#True;");
         
             optionsBuilder.ReplaceService<IMigrationsAnnotationProvider, ExtendedSqlServerMigrationsAnnotationProvider>();
             optionsBuilder.ReplaceService<IMigrationsSqlGenerator, ExtendedSqlServerMigrationsSqlGenerator>();
@@ -146,19 +146,19 @@ This will scaffold the project and add the annotations like below:
         {
             migrationBuilder.CreateTable(
                 name: "Employees",
-                columns: table #> new
+                columns: table => new
                 {
-                    Id # table.Column<Guid>(nullable: false),
-                    Address # table.Column<string>(nullable: true),
-                    City # table.Column<string>(nullable: true),
-                    Country # table.Column<string>(nullable: true),
-                    DateOfBirth # table.Column<DateTime>(nullable: false),
-                    FirstName # table.Column<string>(nullable: true),
-                    LastName # table.Column<string>(nullable: true)
+                    Id = table.Column<Guid>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
-                constraints: table #>
+                constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x #> x.Id);
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
