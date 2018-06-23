@@ -11,7 +11,7 @@ With the help of PowerShell we created around 1000 team projects in a single VST
 
 A build pool (we used private build agents), a webhook (to call our scoreboard application to process the done workitems) and some more stuff was also set up with Powershell commands interacting with the REST API of VSTS.
 
-For the contents of the bootcamp, we used [markdown files](https://github.com/XpiritBV/GDBC2018-Challenges). We had around 12 challenges with 55 achievements created and that content needed to be of top quality. Weeks in advance we (Xpirit and Solidify) worked on the contents and quality of the stories, added step by step manuals and created content like scripts and SQL files where needed. That review process was done in a typical software fashion; branch from master was created, stories were edited and a pull request was done against master in order to merge it back after a review.
+For the contents of the bootcamp, we used [markdown files](https://github.com/XpiritBV/GDBC2018-Challenges). We had around 12 challenges with 55 achievements created and that content needed to be of top quality. Weeks in advance we (Xpirit and Solidify) worked on the contents and quality of the stories, added step by step manuals and created content like scripts and SQL files where needed. That review process was done in a typical software fashion; a branch from master was created, stories were edited and a pull request was done against master in order to merge it back after a review.
 
 However; from markdown to workitems is a different story. For this, we needed a way to understand what was in a markdown file and somehow send this to VSTS. 
 
@@ -104,7 +104,7 @@ This file contained entries like below:
   },...]
  ```
  
-We only needed to run this process ones as the parsing could take time. My colleague [Rob Bos](https://rajbos.github.io/) hooked up the build and release of our VSTS site containing the challenges and tooling and triggered a process on a change in source code (thus the markdown files) which would result in the tooling parsing the files, checking if there are no missing properties and even provisioning a team project with the just edited challenges repository. DevOps to the max!
+We only needed to run this process once as the parsing could take time. My colleague [Rob Bos](https://rajbos.github.io/) hooked up the build and release of our VSTS site containing the challenges and tooling and triggered a process on a change in source code (thus the markdown files) which would result in the tooling parsing the files, checking if there are no missing properties and even provisioning a team project with the just edited challenges repository. DevOps to the max!
  
 ## Provisioning workitems 
  
@@ -197,5 +197,3 @@ With help from the [microsoft.teamfoundationserver.client](https://www.nuget.org
 All this code was wrapped inside a dotnet console application using [Oakton](https://jasperfx.github.io/oakton/) which allowed us to create commands with options. This made it easy to call from the command line in our overall tooling.
 
 Putting it all together in the big loop that created the team projects and all the settings, we were able to relatively quickly provision team projects in VSTS with everything included in a fully automated manner. Combined that with our internal build and release system to validate the structure and see the rendered contents each time we do a check in proved very valuable.
-
-
