@@ -4,9 +4,14 @@ tags:
   - VSTS
   - dotnet
 title: Global DevOps Bootcamp - Provisioning the workitems
+excerpt: >-
+  On the 16th of June, Xpirit organized the Global DevOps Bootcamp. An event
+  that took place all over the world as multiple venues (75) in all kind of
+  countries (30) worked on DevOps challenges. To present those challenges to the
+  participants, we used, of course, Visual Studio Team Services.
 ---
 On the 16th of June, [Xpirit](https://www.xpirit.com) organized the Global DevOps Bootcamp. An event that took place all over the world as multiple venues (75) in all kind of countries (30) worked on DevOps challenges. To present those challenges to the participants, we used, of course, Visual Studio Team Services. 
-<!--more-->
+
 With the help of PowerShell we created around 1000 team projects in a single VSTS instance. Some scaling issues moved that to three different instances which were also located more closely to the regions the participants were in. Next, to creating the team projects, we also needed to have users and groups. Some clever scripting and the AD was filled with around 8000 accounts. 
 
 A build pool (we used private build agents), a webhook (to call our scoreboard application to process the done workitems) and some more stuff was also set up with Powershell commands interacting with the REST API of VSTS.
