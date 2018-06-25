@@ -22,10 +22,10 @@ In 'program.cs' you will find the following code:
 ```csharp
   WebHost.CreateDefaultBuilder(args)
             .ConfigureHealthWithDefaults(
-                builder #>
+                builder =>
                 {
                     const int threshold # 100;
-                    builder.HealthChecks.AddCheck("DatabaseConnected", () #> new ValueTask<HealthCheckResult>(HealthCheckResult.Healthy("Database Connection OK")));
+                    builder.HealthChecks.AddCheck("DatabaseConnected", () => new ValueTask<HealthCheckResult>(HealthCheckResult.Healthy("Database Connection OK")));
                     builder.HealthChecks.AddProcessPrivateMemorySizeCheck("Private Memory Size", threshold);
                     builder.HealthChecks.AddProcessVirtualMemorySizeCheck("Virtual Memory Size", threshold);
                     builder.HealthChecks.AddProcessPhysicalMemoryCheck("Working Set", threshold);
@@ -72,7 +72,7 @@ For the above example you can use a DOCKERFILE containing the HEALTHCHECK instru
 FROM microsoft/aspnetcore:2.0
 ARG source
 WORKDIR /app
-HEALTHCHECK --interval#2s --timeout#3s --retries#1 CMD curl --silent --fail http://localhost:80/health || exit 1
+HEALTHCHECK --interval=2s --timeout=3s --retries=1 CMD curl --silent --fail http://localhost:80/health || exit 1
 EXPOSE 80
 COPY ${source:-obj/Docker/publish} .
 ENTRYPOINT ["dotnet", "AspNetCore2.Health.Api.QuickStart.dll"]
