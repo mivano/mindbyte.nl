@@ -7,7 +7,7 @@ title: Kubernetes and Visual Studio Code
 header:
   image: /images/vscodekubernetes2.jpg
 ---
-In a recent project, we use Kubernetes to host our workloads. The cluster and agents are running in Azure and we used to have this simply as virtual machines provisioned by infrastructure as code. When we wanted to do some work on the cluster, we just opened an SSH tunnel like this:
+In a recent project, we use Kubernetes to host our workloads. The cluster and agents are running in Azure and we used to have this set up as virtual machines provisioned by infrastructure as code. When we wanted to do some work on the cluster, we just opened an SSH tunnel like this:
 
 ```bash
 ssh -i ./.ssh/id_rsa_k8sd -l azureuser -L 8001:localhost:8001  clustername.westeurope.cloudapp.azure.com
@@ -15,7 +15,7 @@ ssh -i ./.ssh/id_rsa_k8sd -l azureuser -L 8001:localhost:8001  clustername.weste
 
 This gave us a direct link to the master and we could use for example the kUbernetes dashboard by browsing to http://localhost:8001/ui
 
-All good and well, but managing a Kubernetes cluster is not what we wanted to do, so when the [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) was released, we switched over to the PaaS variant of Kubernetes. 
+All good and well, but managing a Kubernetes cluster is not what we wanted to do, so when the [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) was released, we switched over to the Azure PaaS variant of Kubernetes. 
 
 Although it has some quirks, it also has some advantages. One of those is the [AZ CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). Using simple commands you can create a new managed cluster, connect to it and operate it.
 
@@ -26,7 +26,7 @@ az group create -l westus -n myResourceGroup
 az aks create --resource-group myResourceGroup --name myAKSCluster
 ```
 
-When the cluster is running, you need to have the **kubectl** control installed. If not already done so, you can use the same AZ CLI to install it:
+When the cluster is running, you need to have the **kubectl** tool installed. If not already done so, you can use the same AZ CLI to install it:
 
 ```powershell
 az aks install-cli
@@ -35,7 +35,7 @@ az aks install-cli
 And then connect to the cluster using:
 
 ```powershell
-az aks browse --name myAKSCluster --resource-group myResourceGroup
+az aks browse --resource-group myResourceGroup --name myAKSCluster 
 ```
 
 This will basically do the same as the SSH method; it opens a tunnel and starts your local browser so you can access the web interface. 
@@ -45,14 +45,14 @@ However, here is where the AKS implementation is a bit problematic. The connecti
 Luckily there is a nice solution in the form of [Visual Studio Code](https://code.visualstudio.com/) and an extension called [ms-kubernetes-tools](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools). After installing this extension, you will see an additional icon inside the VS code environment. 
 ![vscodekubernetes.png](/images/vscodekubernetes.png)
 
-When clicked it shows all registered clusters and offers you some handy features:
+When clicked it shows all registered clusters with a lot of details and offers you some handy features:
 
 - List all available namespaces.
 - An overview of the nodes and which pods are running on those.
 - List all running pods in the selected namespace.
 - Get the running log of a pod.
 - Delete a pod.
-- Port forwarding.
+- Port forwarding to the pod.
 
 The ability to see the output of a pod is ideal. It allows for quick problem solving by just inspecting the contents of the log. It even allows you to have a running log by tailing the output.
 
