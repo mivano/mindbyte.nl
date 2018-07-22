@@ -5,7 +5,7 @@ tags:
   - kubernetes
 title: Kubernetes and Visual Studio Code
 header:
-  image: /images/vscodekubenetes2.jpg
+  image: /images/vscodekubernetes2.png
 ---
 In a recent project, we use Kubernetes to host our workloads. The cluster and agents are running in Azure and we used to have this set up as virtual machines provisioned by infrastructure as code. When we wanted to do some work on the cluster, we just opened an SSH tunnel like this:
 
