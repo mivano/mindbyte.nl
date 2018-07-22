@@ -5,7 +5,7 @@ tags:
   - kubernetes
 title: Kubernetes and Visual Studio Code
 header:
-  image: /images/vscodekubernetes2.jpg
+  image: /images/vscodekubenetes2.jpg
 ---
 In a recent project, we use Kubernetes to host our workloads. The cluster and agents are running in Azure and we used to have this set up as virtual machines provisioned by infrastructure as code. When we wanted to do some work on the cluster, we just opened an SSH tunnel like this:
 
@@ -62,4 +62,4 @@ We also have some isolated environments where we use a SQL server inside the clu
 
 > Note: use 127.0.0.1**,**portnumber instead of 127.0.0.1**:**portnumber when entering the address in SQL Management Studio.
 
-All these simple commands are actually kubectl combinations which are executed in the default console of Visual Studio Code by the extension. This works much faster than the web interface and the connection is pretty stable. 
+All these simple commands are actually kubectl combinations which are executed in the default console of Visual Studio Code by the extension. This works much faster than the web interface and the connection is pretty stable.
