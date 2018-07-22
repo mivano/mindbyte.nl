@@ -3,7 +3,7 @@ published: true
 tags:
   - azure
   - kubernetes
-title: Kubernetes and Visual Studio Code
+title: 'Kubernetes and Visual Studio Code, an ideal combination'
 header:
   image: /images/vscodekubernetes2.png
 ---
