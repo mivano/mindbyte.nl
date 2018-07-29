@@ -4,9 +4,9 @@ tags:
   - api
   - http
 category:
-  - HTTP APIs
+  - HTTP-APIs
 categories:
-  - HTTP APIs
+  - HTTP-APIs
 title: Canonical URLs in an HTTP API
 date: 2018-07-30T00:00:00.000Z
 ---
