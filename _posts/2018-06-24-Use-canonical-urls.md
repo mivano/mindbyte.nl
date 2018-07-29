@@ -7,14 +7,14 @@ category:
   - HTTP APIs
 categories:
   - HTTP APIs
-title: Canonical URLs in HTTP API
+title: Canonical URLs in an HTTP API
 date: 2018-07-30T00:00:00.000Z
 ---
 When you are building an HTTP API, you need to make sure your endpoints have a canonical URI structure. You can describe a canonical URL as your preferred endpoint. When you have endpoints that reference the same resource, it is best to make sure there is one preferred version of this resource.
 
 Take for example a `blog` with a collection of `posts`. You can model the retrieval of all posts for a given blog this like:
 
-```
+```ruby
 GET /Blogs/{id}/Posts
 ```
 
@@ -22,13 +22,13 @@ Although this might sound simple, how do we represent a single `post`?
 
 Would you use:
 
-```
+```ruby
 GET /Blogs/{blogId}/Posts/{id}
 ```
 
 or 
 
-```
+```ruby
 GET /Posts/{id}
 ```
 
@@ -36,14 +36,14 @@ You might even have both endpoints available, but in the end, they do point to t
 
 Another example; what if you have a `users` endpoint and you want to be able to get a `user` by its identifier or by its username. 
 
-```
+```ruby
 GET /Users/{id:guid}
 GET /Users/{name}
 ```
 
 When the user is found, you will get the same record back regardless of the endpoint chosen. 
 
-Although it is fine to have multiple endpoints for the same resource, there should ideally only be one endpoint that returns the representation of the resource. See also https://tools.ietf.org/html/rfc6596. 
+Although it is fine to have multiple endpoints for the same resource, there should ideally only be one endpoint that returns the representation of the resource. See also [rfc 6596](https://tools.ietf.org/html/rfc6596). 
 
 This helps with cache invalidation although it might introduce more roundtrips.
 
