@@ -14,7 +14,7 @@ When you are building an HTTP API, you need to make sure your endpoints have a c
 
 Take for example a `blog` with a collection of `posts`. You can model the retrieval of all posts for a given blog this like:
 
-```ruby
+```HTTP
 GET /Blogs/{id}/Posts
 ```
 
@@ -22,13 +22,13 @@ Although this might sound simple, how do we represent a single `post`?
 
 Would you use:
 
-```ruby
+```HTTP
 GET /Blogs/{blogId}/Posts/{id}
 ```
 
 or 
 
-```ruby
+```HTTP
 GET /Posts/{id}
 ```
 
@@ -36,7 +36,7 @@ You might even have both endpoints available, but in the end, they do point to t
 
 Another example; what if you have a `users` endpoint and you want to be able to get a `user` by its identifier or by its username. 
 
-```ruby
+```HTTP
 GET /Users/{id:guid}
 GET /Users/{name}
 ```
