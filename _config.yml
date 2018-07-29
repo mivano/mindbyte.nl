@@ -31,7 +31,7 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
 staticman:
-  allowedFields          : # ['name', 'email', 'url', 'message']
+  allowedFields          : # ['name', 'email', 'message']
   branch                 : "master"
   commitMessage          : # "New comment"
   filename               : # comment-{@timestamp}
@@ -46,6 +46,14 @@ staticman:
       type               : # "date"
       options:
         format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
+    # Akismet spam detection.
+  akismet:
+    enabled: true
+    author: "name"
+    authorEmail: "email"
+    authorUrl: "url"
+    content: "message"
+    type: "comment"
 reCaptcha:
   enabled                : true
   siteKey                : "6LdcWWAUAAAAALilPeJiFhZCa0a8NakJNqo7Ci9Q"
