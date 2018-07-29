@@ -8,6 +8,7 @@ category:
 categories:
   - HTTP APIs
 title: Canonical URLs in HTTP API
+date: 2018-07-30T00:00:00.000Z
 ---
 When you are building an HTTP API, you need to make sure your endpoints have a canonical URI structure. You can describe a canonical URL as your preferred endpoint. When you have endpoints that reference the same resource, it is best to make sure there is one preferred version of this resource.
 
