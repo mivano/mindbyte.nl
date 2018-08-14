@@ -1,0 +1,9 @@
+_id: a7cee050-9fb5-11e8-b28a-27226d1cfee8
+message: >-
+  And in addition, when you package anything else inside your container to
+  indicate health, then this can be used too in the HEALTHCHECK. See
+  https://blog.sixeyed.com/docker-healthchecks-why-not-to-use-curl-or-iwr/
+name: Michiel van Oudheusden
+email: 11158ad5e37ef688d9d944f2204de7b6
+hidden: ''
+date: 1534246319
