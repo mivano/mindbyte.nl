@@ -1,0 +1,6 @@
+_id: 80735300-9fa2-11e8-b28a-27226d1cfee8
+message: "for kubernetes ,\r\ndo we really need http endpoint on application side.i mean we have background task app, it is responsible for messasing queue stuff and it does not serve any http endpoint so we applied http endpoint only healthcheck.Do you have any experience about this ?"
+name: murat mert
+email: cddfd4105d10bf1dc7d420679f71cfb5
+hidden: ''
+date: 1534238092
