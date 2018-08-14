@@ -1,0 +1,6 @@
+_id: 04121130-9fb5-11e8-b28a-27226d1cfee8
+message: "There are different ways to advertise health to a system. Tools like New Relic etc can also instrument background apps, you can write events/stats yourself to systems like AppInsight, Prometheus etc. Or use a system like Consul to mark your application as healthy. \r\n\r\nThe system outlined in this post is a pull mechanism so an external system can fetch health information about your application. If you do not have this application exposed over http, then you will need to push it out yourself and make sure some system will notice any lack of push messages and thus mark your application as unhealthy."
+name: Michiel van Oudheusden
+email: 11158ad5e37ef688d9d944f2204de7b6
+hidden: ''
+date: 1534246044
