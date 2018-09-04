@@ -1,0 +1,6 @@
+_id: 5f4f9c10-b082-11e8-9ee0-558513fcc2ac
+message: "Hi thanks for the detailed info. but the script you provide no longers works. i took the latest from cli site. that seems to be working \r\nAZ_REPO=$(lsb_release -cs)\r\necho \"deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main\" | sudo tee /etc/apt/sources.list.d/azure-cli.list\r\ncurl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -\r\nsudo apt-get install apt-transport-https\r\nsudo apt-get update && sudo apt-get install azure-cli"
+name: Ravin Singh D
+email: 2002c9e4944be6d9df2f64abba4eebe0
+hidden: ''
+date: 1536093463
