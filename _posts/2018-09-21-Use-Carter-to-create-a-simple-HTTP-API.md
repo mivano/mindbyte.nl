@@ -133,10 +133,12 @@ A `POST` and a `PATCH` work in a similar way.
 As the system uses the default dependency injection, you can pass in any dependencies via the constructor. So a repository can be added like this:
 
 ```csharp
-  private readonly IOrderRepository _orderRepository;
+private readonly IOrderRepository _orderRepository;
 
-        public OrdersModule(IOrderRepository orderRepository) : base("orders")
-        {
+public OrdersModule(IOrderRepository orderRepository) : base("orders")
+{
+   // etc
+}
 ```
 
 Make sure to register this in the **startup.cs**.
