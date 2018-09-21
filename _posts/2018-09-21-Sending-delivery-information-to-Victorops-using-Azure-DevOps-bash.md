@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Sending Deliver information to VictorOps from Azure DevOps releases using Bash
 tags:
   - VSTS
@@ -51,6 +51,3 @@ In the task, you can enter **Environment Variables**. This allows you to get sys
 When the release has been completed and your last task was this bash command, you will have a Deployment notification inside your timeline.
 
 ![victoropstimeline.png](/images/victoropstimeline.png)
-
-
-
