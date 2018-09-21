@@ -1,6 +1,6 @@
 ---
 published: false
-title: Use Carter to create a simple HTTP API
+title: Use Carter to create a simple HTTP API in ASPNET Core
 category:
   - HTTP-APIs
 tags:
@@ -10,7 +10,7 @@ tags:
 categories:
   - HTTP-APIs
 ---
-Creating an HTTP API can be done in multiple ways, but if you are a .NET developer, you most likely will use the [ASP.NET Web API framework](https://www.asp.net/web-api). In previous versions, this was not that obvious to use. The MVC framework and the Web API framework were two different systems. Action filters for one did not work for the other framework. With newer versions, this difference was solved by having one integrated system.
+Creating an HTTP API can be done in multiple ways, but if you are a .NET developer, you most likely will use the [ASP.NET Web API framework](https://www.asp.net/web-api). In previous versions, this was not always that obvious to use. The MVC framework and the Web API framework were actually two different systems. For example; action filters for one framework did not work for the other framework. With newer versions, this difference was solved by having one integrated system.
 
 However, there are other frameworks that allow you to do similar things. It is all a matter of taste what works best for you, your team and the project. In this post, I will show you Carter.
 
@@ -26,7 +26,7 @@ We start by creating a new **ASP.NET Core Web Application** and make sure it is 
 Install-Package Carter
 ```
 
-After installing some dependencies (like the nice FluentValidator and some MS AspNet core packages) you need to set up the plumbing part of it. Inside the **startup.cs** file we need to let the system know that we want to use Carter:
+After installing some dependencies (like the nice FluentValidator and some MS ASPNET Core packages) you need to set up the plumbing part of it. Inside the **startup.cs** file we need to let the system know that we want to use Carter:
 
 ```csharp
   public class Startup
@@ -53,7 +53,7 @@ After installing some dependencies (like the nice FluentValidator and some MS As
 
 ## Creating your first module
 
-Carter will search **CarterModule**s implementations, so let's create one:
+Carter will search for **CarterModule**s implementations, so we create one called **home**:
 
 ```csharp
  public class HomeModule : CarterModule
@@ -124,9 +124,9 @@ Carter supports model binding, so mapping the incoming data to a model. Let's cr
 
 ```
 
-Here we have an **OrdersModule**, living under the `/orders` endpoint. A `PUT` verb is defined and it expects an integer as an identifier. The `BindAndValidate` function will map the contents of the form body to the object (in this case the `Order`) and validates. We then either return an error or perform an update in the database and return a 200 and the contents.
+Here we have an **OrdersModule**, living under the `/orders` endpoint. A `PUT` verb is defined and it expects an integer as an identifier. The `BindAndValidate` function will map the contents of the form body to the object (in this case the `Order`) and validates. We then either return an error or perform an update in the database and return a 200 and the contents using content negotiation.
 
-For the validation, we have the `OrderValidator`. Using the FluentValidator library we can specify the rules that this model need to apply to.
+For the validation, we have the `OrderValidator`. Using the FluentValidator library we can specify the rules that this model needs to apply to.
 
 A `POST` and a `PATCH` work in a similar way.
 
@@ -175,7 +175,7 @@ First, we create a module we want to secure:
     }
  ```
  
-We use the **Before** hook to check that any call hitting this endpoint is having an authenticated user. If not, then we set a 401 and stop the pipeline by returning `false`.
+We use the **Before** hook to check that any call hitting this endpoint is having an authenticated user. If this is not the case, then we set a 401 and stop the pipeline by returning `false`.
 
 Inside the `GET` method we can extract the user claims.
 
