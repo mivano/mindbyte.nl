@@ -39,10 +39,10 @@ echo $victoropsurl
 curl -H "Content-Type: application/json; charset=UTF-8" -X POST --data "$payload" $victoropsurl
 ```
 
-This will construct a payload based on the fields documented by [VictorOps](https://help.victorops.com/knowledge-base/victorops-generic-delivery-insights-integration/). Of source you can alter the fields to your liking. Be careful about the escaping of the variables. 
+This will construct a payload based on the fields documented by [VictorOps](https://help.victorops.com/knowledge-base/victorops-generic-delivery-insights-integration/). Of course you can alter the fields to your liking. Be careful about the escaping of the variables. 
 
 ## Variables
-The VictorOps delivery endpoint URL we will put in the variables of the release. The value you can get from the VictorOps integration settings page. The other variables used inside the payload, you first need to map.
+The VictorOps delivery endpoint URL we will put in the variables of the release. The value you can get from the VictorOps integration settings page. The other variables, used inside the payload, you first need to map using environment variables before you can consume them.
 
 In the task, you can enter **Environment Variables**. This allows you to get system and user variables inside your script.
 
