@@ -77,6 +77,74 @@ You can find some more [samples at GitHub](https://github.com/CarterCommunity/Ca
 
 ## Handling data
 
+Carter supports model binding, so mapping the incoming data to a model. Lets create a simple order which we are updating.
+
+```csharp
+ public class OrdersModule : CarterModule
+    {
+
+        public OrdersModule(): base("orders")
+        {
+            
+            Put("{orderId:int}", async  (req, res, routeData) =>
+            {
+                var result = req.BindAndValidate<Order>();
+
+                if (!result.ValidationResult.IsValid)
+                {
+                    res.StatusCode = 422;
+                    await res.Negotiate(result.ValidationResult.GetFormattedErrors());
+                    return;
+                }
+
+                // TODO Update in DB
+
+                res.StatusCode = 200;
+                await res.Negotiate(result.Data);
+            });
+
+        }
+    }
+
+    public class Order
+    {
+        public int Id { get; set; }
+        public decimal Price { get; set; }
+
+    }
+
+    public class OrderValidator : AbstractValidator<Order>
+    {
+        public OrderValidator()
+        {
+            this.RuleFor(x => x.Price).GreaterThan(0);
+        }
+    }
+
+```
+
+Here we have an **OrdersModule**, living under the `/orders` endpoint. A `PUT` verb is defined and it expects an integer as identifier. The `BindAndValidate` function will map the contents of the form body to the object (in this case the `Order`) and validates. We then either return an error or perform an update in the database and return a 200 and the contents.
+
+For the validation, we have the `OrderValidator`. Using the FluentValidator library we can specify the rules that this model need to apply to.
+
+A `POST` and a `PATCH` work in a similar way.
+
+As the system uses the default dependency injection, you can pass in any dependencies via the contructor. So a repository can be added like this:
+
+'''csharp
+  private readonly IOrderRepository _orderRepository;
+
+        public OrdersModule(IOrderRepository orderRepository) : base("orders")
+        {
+```
+
+Make sure to register this in the **startup.cs**.
+
+```csharp
+ services.AddTransient<IOrderRepository, DummyOrderRepository>();
+```
+
+## Authentication
 
 
 
