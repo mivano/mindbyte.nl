@@ -1,6 +1,8 @@
 ---
 published: true
-title: Sending Deliver information to VictorOps from Azure DevOps releases using Bash
+title: >-
+  Sending Delivery information to VictorOps from Azure DevOps releases using
+  Bash
 tags:
   - VSTS
   - AzureDevOps
