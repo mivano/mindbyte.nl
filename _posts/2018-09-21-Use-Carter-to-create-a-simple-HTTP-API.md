@@ -146,5 +146,67 @@ Make sure to register this in the **startup.cs**.
 
 ## Authentication
 
+When you want to secure your endpoints, you normally add the `AuthorizeAttribute` to your controller or define default policies. In Carter, you have a different way to handle this as it supports before and after hooks. Security is a typical thing to handle in the before hook, while the after hook is useful for logging etc.
+
+First we create a module we want to secure:
+
+```csharp
+ public class SecureModule : CarterModule
+    {
+        public SecureModule() : base("secure")
+        {
+            Before += context =>
+            {
+                var authenticated = context?.User?.Identity != null && context.User.Identity.IsAuthenticated;
+                if (!authenticated)
+                {
+                    context.Response.StatusCode = 401;
+                }
+                return Task.FromResult(authenticated);
+            };
+
+            Get("/", async (req, res, routeData) =>
+            {
+                await res.AsJson(req.HttpContext.User.Claims.Select(c=>new {c.Type, c.Value}));
+            });
+         
+        }
+    }
+ ```
+ 
+We use the **Before** hook to check that any call hitting this endpoint is having an authenticated user. If not, then we set a 401 and stop the pipeline by returning `false`.
+
+Inside the `GET` method we can extract the user claims.
+
+We still need to authenticate the user somewhere, in the module we only checked the authorization. We do this inside the global hooks in the `startup.cs` file:
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+  if (env.IsDevelopment())
+  {
+    app.UseDeveloperExceptionPage();
+  }
+
+  app.UseCarter(new CarterOptions(ctx => this.GetBeforeHook(ctx)));
+}
+
+private Task<bool> GetBeforeHook(HttpContext context)
+{
+  var identity = new GenericIdentity("AuthenticatedUser");
+
+  identity.AddClaim(new Claim(ClaimTypes.Email, "user@example.com"));
+
+  context.User = new ClaimsPrincipal(identity);
+
+  return Task.FromResult(true);
+}
+```
+
+The BeforeHook is not actually checking the user, but you can do this by inspecting a cookie or preferably, checking the Json Web Token (JWT) supplied in the Authorization header.
+Lets assume we have something like that, so we can just set the ClaimsPrincipal and push some claims in.
+
+
+
 
 
