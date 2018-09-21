@@ -6,16 +6,17 @@ category:
 tags:
   - api
   - http
+  - dotnet
 categories:
   - HTTP-APIs
 ---
-Creating a HTTP API can be done in multiple ways, but if you are .NET developer, you most likely will use the [ASP.NET Web API framework](https://www.asp.net/web-api). In previous versions this was not that obvious to use. The MVC framework and the Web API framework were two different systems. Action filters for one, did not work for the other framework. With newer versions this difference was solved by having one integrated system.
+Creating an HTTP API can be done in multiple ways, but if you are a .NET developer, you most likely will use the [ASP.NET Web API framework](https://www.asp.net/web-api). In previous versions, this was not that obvious to use. The MVC framework and the Web API framework were two different systems. Action filters for one did not work for the other framework. With newer versions, this difference was solved by having one integrated system.
 
-However there are other frameworks that allow you to do similar things. It is all a matter of taste what works best for you, your team and the project. In this post I will show you Carter.
+However, there are other frameworks that allow you to do similar things. It is all a matter of taste what works best for you, your team and the project. In this post, I will show you Carter.
 
 ## Carter
 
-[Carter](https://github.com/CarterCommunity/Carter) is a ASP.NET Core library to that adds Nancy like routing support to your project. It works on top of the default Microsoft routing to provide a more elegant like routing syntax. If you ever worked with NancyFX you will recognize it directly, but I will show it in some examples. It is created by [Jonathan Channon](https://github.com/jchannon) who is also a contributor to NancyFx.
+[Carter](https://github.com/CarterCommunity/Carter) is an ASP.NET Core library to that adds Nancy like routing support to your project. It works on top of the default Microsoft routing to provide a more elegant like routing syntax. If you ever worked with NancyFX you will recognize it directly, but I will show it in some examples. It is created by [Jonathan Channon](https://github.com/jchannon) who is also a contributor to NancyFx.
 
 ## Installing
 
@@ -25,7 +26,7 @@ We start by creating a new **ASP.NET Core Web Application** and make sure it is 
 Install-Package Carter
 ```
 
-After installing some dependencies (like the nice FluentValidator and some MS AspNet core packages) you need to setup the pluming part of it. Inside the **startup.cs** file we need to let the system know that we want to use Carter:
+After installing some dependencies (like the nice FluentValidator and some MS AspNet core packages) you need to set up the plumbing part of it. Inside the **startup.cs** file we need to let the system know that we want to use Carter:
 
 ```csharp
   public class Startup
@@ -52,7 +53,7 @@ After installing some dependencies (like the nice FluentValidator and some MS As
 
 ## Creating your first module
 
-Carter will search **CarterModule**s implementations, so lets create one:
+Carter will search **CarterModule**s implementations, so let's create one:
 
 ```csharp
  public class HomeModule : CarterModule
@@ -71,13 +72,13 @@ Carter will search **CarterModule**s implementations, so lets create one:
     
 This _HomeModule_ lives under the `/api` root, as that is what we specified inside the call to the base class. Inside the constructor, we defined the different methods this module will offer. In this case a simple `GET` method. 
 
-As parameters you have the request, response and route data which allows you to do something with the incoming data and construct a response. In this case the call will return a JSON collection of the request headers.
+As parameters, you have the request, response and route data which allows you to do something with the incoming data and construct a response. In this case, the call will return a JSON collection of the request headers.
 
 You can find some more [samples at GitHub](https://github.com/CarterCommunity/Carter/tree/master/samples).
 
 ## Handling data
 
-Carter supports model binding, so mapping the incoming data to a model. Lets create a simple order which we are updating.
+Carter supports model binding, so mapping the incoming data to a model. Let's create a simple order which we are updating.
 
 ```csharp
  public class OrdersModule : CarterModule
@@ -123,13 +124,13 @@ Carter supports model binding, so mapping the incoming data to a model. Lets cre
 
 ```
 
-Here we have an **OrdersModule**, living under the `/orders` endpoint. A `PUT` verb is defined and it expects an integer as identifier. The `BindAndValidate` function will map the contents of the form body to the object (in this case the `Order`) and validates. We then either return an error or perform an update in the database and return a 200 and the contents.
+Here we have an **OrdersModule**, living under the `/orders` endpoint. A `PUT` verb is defined and it expects an integer as an identifier. The `BindAndValidate` function will map the contents of the form body to the object (in this case the `Order`) and validates. We then either return an error or perform an update in the database and return a 200 and the contents.
 
 For the validation, we have the `OrderValidator`. Using the FluentValidator library we can specify the rules that this model need to apply to.
 
 A `POST` and a `PATCH` work in a similar way.
 
-As the system uses the default dependency injection, you can pass in any dependencies via the contructor. So a repository can be added like this:
+As the system uses the default dependency injection, you can pass in any dependencies via the constructor. So a repository can be added like this:
 
 '''csharp
   private readonly IOrderRepository _orderRepository;
@@ -148,7 +149,7 @@ Make sure to register this in the **startup.cs**.
 
 When you want to secure your endpoints, you normally add the `AuthorizeAttribute` to your controller or define default policies. In Carter, you have a different way to handle this as it supports before and after hooks. Security is a typical thing to handle in the before hook, while the after hook is useful for logging etc.
 
-First we create a module we want to secure:
+First, we create a module we want to secure:
 
 ```csharp
  public class SecureModule : CarterModule
@@ -203,10 +204,67 @@ private Task<bool> GetBeforeHook(HttpContext context)
 }
 ```
 
-The BeforeHook is not actually checking the user, but you can do this by inspecting a cookie or preferably, checking the Json Web Token (JWT) supplied in the Authorization header.
-Lets assume we have something like that, so we can just set the ClaimsPrincipal and push some claims in.
+The BeforeHook is not actually checking the user, but you can do this by inspecting a cookie or preferably, checking the JSON Web Token (JWT) supplied in the Authorization header.
+Let's assume we have something like that, so we can just set the ClaimsPrincipal and push some claims in.
 
+There are also helper methods like `this.RequiresAuthentication()` or to check for claims:
 
+```csharp
+ public SecureModule() : base("secure")
+ {
+ 
+   this.RequiresClaims(c => c.Type == ClaimTypes.Email);
 
+   Get("/", async (req, res, routeData) =>
+       {
+         await res.AsJson(req.HttpContext.User.Claims.Select(c=>new {c.Type, c.Value}));
+       });
 
+ }
+```
 
+## Error handling
+
+You can handle errors using the hooks, but also by defining the [exception handling path](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-2.1) inside the `startup.cs` class:
+
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+  app.UseExceptionHandler("/errorhandler");
+
+  app.UseCarter(new CarterOptions(ctx => this.GetBeforeHook(ctx)));
+}
+```
+
+This replaces the DeveloperExceptionPage (you can make this conditional depending on the environment you are in). Any errors will now be redirected to the specified location.
+
+Inside the **ErrorModule** we can pick this one up (by using the IExceptionHandlerFeature) and handle it correctly:
+
+```csharp
+public class ErrorModule : CarterModule
+{
+        public ErrorModule()
+        {
+            this.Get("/error", (req, res, routeData) => throw new ArgumentNullException("parameter", "Cannot be null"));
+
+            this.Get("/errorhandler", async (req, res, routeData) =>
+            {
+                string error = string.Empty;
+                var feature = req.HttpContext.Features.Get<IExceptionHandlerFeature>();
+                if (feature != null)
+                {
+                    if (feature.Error is ArgumentNullException)
+                    {
+                        res.StatusCode = 400;
+                    }
+                    error = feature.Error.ToString();
+                }
+                await res.WriteAsync($"There has been an error{Environment.NewLine}{error}");
+            });
+        }
+}
+```
+
+## Conclusion
+
+Although this is a relatively small library, it adds some nice functionality to create simple HTTP APIs. If you like the DSL of Ruby (and Nancy) and do not want to overhead of ASPNET web API, then this is a nice alternative. Be aware that this is an open source project, so support is limited and things can change. 
