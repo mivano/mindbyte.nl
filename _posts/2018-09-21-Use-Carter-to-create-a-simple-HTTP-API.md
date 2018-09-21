@@ -9,6 +9,8 @@ tags:
   - dotnet
 categories:
   - HTTP-APIs
+header:
+  image: images/ty-feague-176440-unsplash.png
 ---
 Creating an HTTP API can be done in multiple ways, but if you are a .NET developer, you most likely will use the [ASP.NET Web API framework](https://www.asp.net/web-api). In previous versions, this was not always that obvious to use. The MVC framework and the Web API framework were actually two different systems. For example; action filters for one framework did not work for the other framework. With newer versions, this difference was solved by having one integrated system.
 
@@ -62,10 +64,8 @@ Carter will search for **CarterModule**s implementations, so we create one calle
         {
             Get("/", async (req, res, routeData) =>
             {
-                await res.AsJson(req.Headers);
-               
-            });
-            
+                await res.AsJson(req.Headers);               
+            });            
         }
  }
  ```
