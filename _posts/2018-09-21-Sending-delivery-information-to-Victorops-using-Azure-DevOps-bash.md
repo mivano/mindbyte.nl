@@ -5,6 +5,8 @@ tags:
   - VSTS
   - AzureDevOps
   - IncidentManagement
+header:
+  image: images/patrick-hendry-613598-unsplash.png
 ---
 
 When you are using an Incident Management alerting tool like Pagerduty or VictorOps, it might be beneficial to notice when your deployment system is performing an action. Like doing a release to your environment. Pretty useful to correlate with an incident coming in.
