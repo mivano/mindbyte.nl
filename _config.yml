@@ -305,11 +305,6 @@ prose:
           label: "Published"
           element: "checkbox"
           value: "true"
-      - name: "layout"
-        field:
-          element: "hidden"
-          label: "Layout"
-          value: "posts"
       - name: "title"
         field:
           label: "Title"
@@ -320,7 +315,7 @@ prose:
           element: "text"
           label: "Description"
           placeholder: "Enter Post Description"
-      - name: "headline"
+      - name: "excerpt"
         field:
           element: "text"
           label: "beadline"
@@ -346,19 +341,10 @@ prose:
           alterable: true
       - name: "tags"
         field:
-          element: "text"
+          element: multiselect"
           label: "Tags"
-          placeholder: "Enter tags, separated by spaces"
-      - name: "imagefeature"
-        field:
-          element: "text"
-          label: "Featured Image"
-          placeholder: "somefile.jpg"
-      - name: "mathjax"
-        field:
-          element: "checkbox"
-          label: "MathJax"
-          value: false
+          placeholder: "Enter tags"
+          alterable: true
       - name: "featured"
         field:
           element: "checkbox"
