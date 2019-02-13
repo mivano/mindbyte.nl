@@ -295,7 +295,6 @@ compress_html:
     envs: development
     
 prose:
-  rooturl: '_posts'
   siteurl: 'https://mindbyte.nl/'
   relativeLinks: 'https://mindbyte.nl/links.jsonp'
   media: 'images'
