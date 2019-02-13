@@ -4,8 +4,12 @@ mathjax: false
 featured: false
 comments: false
 title: Analyze your project with SonarQube using a docker container
-tags: 'dotnet, sonarqube'
+tags:
+  - dotnet
+  - sonarqube
 imagefeature: /images/sonarqube.png
+header:
+  image: /images/sonarqube.png
 ---
 SonarQube is an excellent static code analyzer tool as it has many different analyzers and provides useful suggestions for any potential bugs and issues. As such, it is very beneficial to have an instance of SonarQube running somewhere and process your code when you do a commit to a branch. My colleague Rob Bos has some pointers on how to set this up on his [blog](https://rajbos.github.io/blog/2018/10/20/SonarQube-setup).
 
