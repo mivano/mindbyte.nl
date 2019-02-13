@@ -12,7 +12,7 @@ When an alert fires, the Logic App is called, which performs some processing and
 
 The alerts use a webhook, so it needs to know the address of the Logic App to deliver the payload to. The classic alerts allowed you to specify a webhook directly, the new style of alerts use Action Groups. Each action group contains one or more actions to perform like sending an email, or calling a logic app.
 
-For example:
+As an example a snippet of the ARM template:
 
 ```json
 "parameters": {
