@@ -1,5 +1,4 @@
 ---
-layout: post
 published: true
 mathjax: false
 featured: false
