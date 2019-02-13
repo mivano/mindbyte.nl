@@ -309,7 +309,7 @@ prose:
         field:
           element: "hidden"
           label: "Layout"
-          value: "post"
+          value: "posts"
       - name: "title"
         field:
           label: "Title"
