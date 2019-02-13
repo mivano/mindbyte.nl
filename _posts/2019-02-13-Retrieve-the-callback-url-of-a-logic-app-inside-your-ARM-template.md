@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: Retrieve the callback url of a logic app inside your ARM template
 tags:
   - Azure
