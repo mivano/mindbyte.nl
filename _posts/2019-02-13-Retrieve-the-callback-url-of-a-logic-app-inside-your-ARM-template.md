@@ -57,3 +57,62 @@ For example:
 In this example, we have a `serviceUri` defined pointing to the actual callback URL which is exposed by the Http action inside the logic app. We need to reference the `'/triggers/manual'`. If you do not do so, you reference the actual workflow definition itself which cannot be used to send data to.
 
 So use `[listCallbackURL(concat(resourceId('Microsoft.Logic/workflows', parameters('workflowName')), '/triggers/manual'), '2016-06-01').value]` to fetch the actual callback url which allows you to post data to your Logic App.
+
+You can also apply this to the classic alerts:
+
+```json
+ {
+        "type": "microsoft.insights/alertrules",
+        "name": "databasename Failed Connections",
+        "apiVersion": "2014-04-01",
+        "location": "westeurope",
+        "tags": {
+          "[concat('hidden-link:',resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'databasename'))]": "resources"
+        },
+        "scale": null,
+        "properties": {
+            "name": "databasename Failed Connections",
+            "description": null,
+            "isEnabled": true,
+            "condition": {
+                "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                "dataSource": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                    "resourceUri": "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'databasename')]",
+                    "metricNamespace": null,
+                    "metricName": "connection_failed"
+                },
+                "operator": "GreaterThan",
+                "threshold": 10,
+                "windowSize": "PT5M"
+            },
+            "actions":  [
+              {
+                "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleWebhookAction",
+                "properties": {},
+                "serviceUri":  "[listCallbackURL(concat(resourceId('Microsoft.Logic/workflows', parameters('workflowName')), '/triggers/manual'), '2016-06-01').value]"
+              }
+            ]
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Sql/servers/databases', variables('sqlServerName'), 'databasename')]",
+          "[resourceId('Microsoft.Logic/workflows', parameters('workflowName'))]"
+        ]
+      }
+```
+
+> Be aware that they will become obsolete soon. 
+
+You can, instead of a webhook, also specify the Logic App directly in the _Action Group_. Do note that the UI only shows the name of the Logic App, not the underlying URL that will be called.
+
+```json
+  "logicAppReceivers": [
+              {
+                  "name": "LogicApp",
+                  "resourceId": "[resourceId('Microsoft.Logic/workflows', parameters('workflowName'))]",
+                  "callbackUrl": "[listCallbackURL(concat(resourceId('Microsoft.Logic/workflows', parameters('workflowName')), '/triggers/manual'), '2016-06-01').value]"
+              }
+          ],
+```
+
+Above, we specify both the Logic App name (the resource id) as well as the callback URL.
