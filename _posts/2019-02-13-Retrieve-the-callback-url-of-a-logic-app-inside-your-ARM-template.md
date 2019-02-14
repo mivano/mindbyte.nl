@@ -6,11 +6,13 @@ tags:
   - IaC
   - LogicApp
   - ARM
+featured: false
+comments: false
 ---
 In a recent project, we use Infrastructure as Code to roll out resources to Azure. For this, we use ARM templates, and part of this template is the deployment of Azure Alerts and a Logic App. 
 When an alert fires, the Logic App is called, which performs some processing and forwards the call to our incident management tool called [VictorOps](https://victorops.com/).
 
-The alerts use a webhook, so it needs to know the address of the Logic App to deliver the payload to. The classic alerts allowed you to specify a webhook directly, the new style of alerts use Action Groups. Each action group contains one or more actions to perform like sending an email, or calling a logic app.
+The alerts use a webhook, so it needs to know the address of the Logic App to deliver the payload to. The classic alerts allowed you to specify a webhook directly, the new style of alerts use Action Groups. Each action group contains one or more actions to perform, like sending an email, or calling a logic app.
 
 As an example a snippet of the ARM template:
 
