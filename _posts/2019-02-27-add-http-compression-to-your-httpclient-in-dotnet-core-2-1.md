@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 featured: false
 comments: false
 title: Add http compression to your httpclient in dotnet core 2.1
