@@ -4,19 +4,19 @@ featured: false
 comments: false
 title: Add http compression to your httpclient in dotnet core 2.1
 description: >-
-  Use the HttpClientFactory to add compression to the HttpClientHandler for
-  making API calls.
+  Use the HttpClientFactory to add compression to the dotnet core 2.1
+  HttpClientHandler for making API calls.
 categories:
   - http-api
 tags:
   - api
   - dotnet
 ---
-Microsoft added a nice feature in dotnet core 2.1 that allows you to register HttpClient instances in a central place and inject them using Dependency Injection where you need them.
+Microsoft added a nice feature in dotnet core 2.1 that allows you to register HttpClient instances in a central place and inject them using _Dependency Injection_ where you need them.
 
-The HttpClientFactory manages the lifetime of the HttpClient for you and makes sure any additional middleware is executed. For example you can add retry logic or logging in a global way. There are better [places](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1) to describe what a HttpClientFactory does, here I want to discuss compression.
+The HttpClientFactory manages the lifetime of the HttpClient for you and makes sure any additional middleware is executed. For example, you can add retry logic or logging globally. There are better [places](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1) to describe what a HttpClientFactory does, here I want to discuss compression.
 
-If you use your http client to call another website, then by default it does not advertise that is supports compression. Which is a shame as it can reduce the payload of the response considerably. Most webservers will compress the response body when the request contains a header called `Accept-Encoding`. The value of this header specifies what kind of encodings are supported by the calling client. For example:
+If you use your HTTP client to call another website, then by default it does not advertise that it supports compression. Which is a shame as it can reduce the payload of the response considerably. Most web servers will compress the response body when the request contains a header called `Accept-Encoding`. The value of this header specifies what kind of encodings are supported by the calling client. For example:
 
 ```
 GET https://www.example.com
@@ -35,7 +35,7 @@ content-type: application/xml
 <compressed>
 ```
 
-The client now needs to decompress the body and return the contents. Your browser will by default do this already for you, however a HttpClient wont.
+The client now needs to decompress the body and return the contents. Your browser will by default do this for you, however a HttpClient won't.
 
 ## Configure a HttpClient
 
@@ -69,7 +69,7 @@ Besides registering the HttpClient with a name and some default settings, you ca
             });
 ```
 
-You can configure a new HttpClientHandler, check if compression is indeed supported and select the encodings you want to use. The HttpClient will now send the header and will automatically decompress the reponse when encoded.
+You can configure a new HttpClientHandler, check if compression is indeed supported and select the encodings you want to use. The HttpClient will now send the header and will automatically decompress the response when encoded.
 
 You can see the header by calling httpbin.org from within a controller:
 
@@ -101,4 +101,4 @@ The `/headers` endpoint will echo back the supplied headers send to the endpoint
 
 ## Conclusion
 
-Compression can really help in reducing the payload and thus speed up the transfer of data. However, a default HttpClient does not have this enabled. Using the HttpClientFactory you can do this from a central location and reuse the logic.
+Compression can help in reducing the payload and thus speed up the transfer of data. However, a default HttpClient does not have this enabled. Using the HttpClientFactory, you can do this from a central location and reuse the logic.
