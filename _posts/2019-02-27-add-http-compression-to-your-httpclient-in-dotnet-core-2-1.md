@@ -14,11 +14,11 @@ tags:
 ---
 Microsoft added a nice feature in dotnet core 2.1 that allows you to register HttpClient instances in a central place and inject them using _Dependency Injection_ where you need them.
 
-The HttpClientFactory manages the lifetime of the HttpClient for you and makes sure any additional middleware is executed. For example, you can add retry logic or logging globally. There are better [places](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1) to describe what a HttpClientFactory does, here I want to discuss compression.
+The HttpClientFactory manages the lifetime of the HttpClient for you and makes sure any additional middleware is executed. For example, you can add retry logic or logging globally. There are better [places](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-2.1) to describe how the HttpClientFactory works, here I want to discuss compression.
 
 If you use your HTTP client to call another website, then by default it does not advertise that it supports compression. Which is a shame as it can reduce the payload of the response considerably. Most web servers will compress the response body when the request contains a header called `Accept-Encoding`. The value of this header specifies what kind of encodings are supported by the calling client. For example:
 
-```
+```http
 GET https://www.example.com
 Accept: application/xml
 Accept-Encoding: gzip, deflate
@@ -26,7 +26,7 @@ Accept-Encoding: gzip, deflate
 
 The server can respond with a compressed body:
 
-```
+```http
 200 OK
 content-encoding: gzip
 content-length: 17800
