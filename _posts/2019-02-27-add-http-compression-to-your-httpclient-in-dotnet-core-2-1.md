@@ -71,7 +71,7 @@ Besides registering the HttpClient with a name and some default settings, you ca
 
 You can configure a new HttpClientHandler using the `ConfigurePrimaryHttpMessageHandler` method extension, check if compression is indeed supported and select the encodings you want to use. The HttpClient will now send the header and will automatically decompress the response when encoded.
 
-You can see the header by calling httpbin.org from within a controller:
+You can see the header by calling [httpbin.org](http://httpbin.org/) from within a controller:
 
 ```csharp
     [Route("api/[controller]")]
@@ -97,7 +97,7 @@ You can see the header by calling httpbin.org from within a controller:
      }
 ```
 
-The `/headers` endpoint will echo back the supplied headers send to the endpoint.
+The `/headers` endpoint in the httpbin service will echo back the supplied headers send to the endpoint. 
 
 ## Conclusion
 
