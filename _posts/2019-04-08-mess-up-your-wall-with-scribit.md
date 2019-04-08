@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 featured: false
 comments: false
 title: Mess up your wall with Scribit
