@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 featured: false
 comments: false
 title: Mess up your wall with Scribit
@@ -13,3 +13,6 @@ I was backer number 27, and being an early backer the price was pretty reasonabl
 The packaging was excellent. Next to the device it self, it also included extra markers. Although you can use any kind of marker, they have their own type which can be erased by heating the inkt. That function is not yet active, so for now you can use a wet sponge, which works nicely as well.
 
 Installation looks simply; just add two nails and attach the robot. But it takes a little more effort. The application helps you to set up the device, just follow the videos and use the supplied materials.
+
+The first drawing was not that succesfull; one of the markers was not fitted nicely, so lines were partially drawn. You need to firmly insert them, so subsequentual tries did deliver nice picture.
+
