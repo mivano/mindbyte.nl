@@ -20,8 +20,10 @@ I am looking forward to firmware and software updates, as it has potential!
 
 Below some examples of Scribit drawing on drywall.
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tQa-2z5jN-U/0.jpg)](https://www.youtube.com/watch?v=tQa-2z5jN-U)
+<iframe width="560" height="315" src="http://www.youtube.com/embed/tQa-2z5jN-U" frameborder="0"> </iframe>
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/r-nX9tKYaaQ/0.jpg)](https://www.youtube.com/watch?v=r-nX9tKYaaQ)
+<iframe width="560" height="315" src="http://www.youtube.com/embed/r-nX9tKYaaQ" frameborder="0"> </iframe>
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/78ORSlDIrn0/0.jpg)](https://www.youtube.com/watch?v=78ORSlDIrn0)
+<iframe width="560" height="315" src="http://www.youtube.com/embed/78ORSlDIrn0" frameborder="0"> </iframe>
+
+
