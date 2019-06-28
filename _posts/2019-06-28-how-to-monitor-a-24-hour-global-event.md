@@ -45,7 +45,7 @@ The Google Analytics has some great dashboards that even allows you to see real-
 
 It also allowed us to see which pages are requested. Since we had the details of the challenge inside the url, we could see which ones started.
 
-[gdbcpages.png](/images/gdbcpages.png)
+![gdbcpages.png](/images/gdbcpages.png)
 
 During the day, we nicely noticed the user location change along from Europe.
 
