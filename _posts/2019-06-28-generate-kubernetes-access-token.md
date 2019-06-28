@@ -11,6 +11,7 @@ tags:
   - AKS
 header:
   '-image': images/silas-kohler-C1P4wHhQbjM-unsplash.jpg
+imagefeature: images/silas-kohler-C1P4wHhQbjM-unsplash.jpg
 ---
 There are various ways to connect to a Kubernetes cluster, but for a recent event ([GDBC](https://globaldevopsbootcamp.com/)) I needed to connect to an Azure Kubernetes Cluster using an API call. For this event, we used Docker containers to do the actual work and the underlying infrastructure needed to schedule these containers to one of the available AKS instances. 
 
@@ -119,4 +120,4 @@ The token is nothing more then a Json Web Token. This value can be used as the a
 
 ## Conclusion
 
-Getting the access token to make authenticated calls to a Kubernetes cluster is not that difficult, but be aware that you need to carefully store the access token and give it the correct amount of privileges. !
+Getting the access token to make authenticated calls to a Kubernetes cluster is not that difficult, but be aware that you need to carefully store the access token and give it the correct amount of privileges!
