@@ -59,7 +59,50 @@ Application Insight was also keeping track of the users which allowed us for exa
 
 ![screen37.png](/images/screen37.png)
 
-Also after the event itself, we could retrieve a lot of interesting information from both system. 
+Also after the event itself, we could retrieve a lot of interesting information from both system, for example the number of users per hour. The numbers are the top are the deployments that took place during the event. We needed to roll out some enhancements to the UI and text to all our web services (multiple per 4 region).
+
+![screen33-a.png](/images/screen33-a.png)
+
+## Keeping track of the application
+
+We also need to make sure we knew what the application was doing. All the telemetry and log data was sent to Application Insighs. The application map proved to be very efficient to see where issue poped up.
+
+![screen1.png](/images/screen1.png)
+
+By providing cloud role names, the different deployments were nicely condensed into one entry. You can do this by adding a telemetry initializer.
+
+```csharp
+/// <summary>
+/// Initializer for telemetry
+/// </summary>
+[DebuggerStepThrough]
+public class ServiceNameInitializer : ITelemetryInitializer
+{
+    /// <inheritdoc />   
+    public void Initialize(ITelemetry telemetry)
+    {
+        telemetry.Context.Cloud.RoleName = "ChallengesWeb";
+    }
+}
+```
+
+Register this in the `ConfigureServices` so it is available for AppInsights
+
+```csharp
+services.AddSingleton<ITelemetryInitializer, ServiceNameInitializer>();
+```
+
+We even noticed some strange dependencies inside our web application which the tooling had picked up.
+
+![gdbcinjection.png](/images/gdbcinjection.png)
+
+Most likely some user with a browser extension which is injecting code into the webpage and as such it is captured. Something we should have taken care of with some policies maybe.
+
+As we stored a lot of metrics, we can find out how many challenges are started etc.
+
+![gdbcappinsightmetrics.png](/images/gdbcappinsightmetrics.png)
+
+
 
 
 
