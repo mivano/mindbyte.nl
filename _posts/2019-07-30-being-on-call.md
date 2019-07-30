@@ -25,5 +25,4 @@ Some learnings from this time I want to share:
 
 1. When an incident is raised, make sure to acknowlegde this first. So others are aware that somebody is looking at the issue. Tools mentioned above will do this for you. Assess the issue, see what is impacted and mitigate. In the middle of the night you wont have time to do a root cause analysis or write that nice solution, that is for the next day. Always perform a post mortem; why did the issue occur, was it a valid one to wake you up and what did you do to make sure it will not happen again.
 
-1. 
-
+1.
