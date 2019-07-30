@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 featured: false
 comments: false
 title: Being on call
@@ -42,4 +42,3 @@ Some learnings from this time I want to share:
 And remember; any alert that reached the on-call person should be something that warrants somebody getting out of bed and fix the issue right away. Everything else should wait for regular business hours.
 
 Not having control over the product and as such, not doing DevOps would be a no go for me in providing on-call. If I'm not able to understand and fix the issues, then it is just a simple helpdesk function and adds little benefit.
-
