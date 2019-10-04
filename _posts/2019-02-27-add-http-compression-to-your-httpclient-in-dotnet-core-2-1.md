@@ -7,7 +7,7 @@ description: >-
   Use the HttpClientFactory to add compression to the dotnet core 2.1
   HttpClientHandler for making API calls.
 categories:
-  - http-api
+  - HTTP-APIs
 tags:
   - api
   - dotnet
