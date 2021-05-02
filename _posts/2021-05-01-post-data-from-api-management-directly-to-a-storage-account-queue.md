@@ -27,12 +27,12 @@ In the newly created operation, you can now edit the policy. Copy and paste the 
         <set-header name="Authorization" exists-action="override">
             <value>@{
 
-            string accountName = "{{post-transaction-queue-storageaccount}}";
-            string sharedKey = "{{post-transaction-queue-accesskey}}";
+            string accountName = "name-of-your-storage-account";
+            string sharedKey = "access-key-of-storage-account";
             string sig = "";
             string contentType = context.Request.Headers.GetValueOrDefault("Content-Type");
 
-            string canonical = String.Format("POST\n\n{0}\n\nx-ms-date:{1}\n/{2}/{{post-transaction-queue-name}}/messages", contentType, context.Variables.GetValueOrDefault<string>("UTCNow"), accountName );
+            string canonical = String.Format("POST\n\n{0}\n\nx-ms-date:{1}\n/{2}/incoming-data/messages", contentType, context.Variables.GetValueOrDefault<string>("UTCNow"), accountName );
 
             using (HMACSHA256 hmacSha256 = new HMACSHA256( Convert.FromBase64String(sharedKey) ))
             {
@@ -47,13 +47,13 @@ In the newly created operation, you can now edit the policy. Copy and paste the 
         <set-header name="x-ms-date" exists-action="override">
             <value>@( context.Variables.GetValueOrDefault<string>("UTCNow") )</value>
         </set-header>
-        <set-backend-service base-url="https://{{post-transaction-queue-storageaccount}}.queue.core.windows.net/" />
+        <set-backend-service base-url="https://name-of-your-storage-account.queue.core.windows.net/" />
         <set-body>@{ 
             JObject inBody = context.Request.Body.As<JObject>(); 
             
             return  "<QueueMessage><MessageText>"+inBody.ToString()+"</MessageText></QueueMessage>"; 
         }</set-body>
-        <rewrite-uri template="{{post-transaction-queue-name}}/messages" copy-unmatched-params="true" />
+        <rewrite-uri template="incoming-data/messages" copy-unmatched-params="true" />
         <!--  Don't expose APIM subscription key to the backend. -->
         <set-header name="ocp-apim-subscription-key" exists-action="delete" />
     </inbound>
@@ -88,11 +88,11 @@ We know we do a POST call, we fetch the content-type header value, generate our 
 So that leads to this canonical form:
 
 ```csharp
-string canonical = String.Format("POST\n\n{0}\n\nx-ms-date:{1}\n/{2}/{{post-transaction-queue-name}}/messages", contentType, context.Variables.GetValueOrDefault<string>("UTCNow"), accountName );
+string canonical = String.Format("POST\n\n{0}\n\nx-ms-date:{1}\n/{2}/incoming-data/messages", contentType, context.Variables.GetValueOrDefault<string>("UTCNow"), accountName );
 ```
 
 The `Authorization` header will be set with the value of `return String.Format("SharedKey {0}:{1}", accountName, sig);`
 
-The last part is the `outbound`; the PUT operation on the storage account returns a 201 (created). However, we wanted to produce a 202 (accepted and queued for processing). So we change the status to 202 when we see a 201.
+The last part is in the `outbound`; the PUT operation on the storage account returns a 201 (created). However, we wanted to produce a 202 (accepted and queued for processing). So we change the status to 202 when we see a 201.
 
-In the policy, you see a couple of variables surrounded in {{ }} braces. These are defined inside the Named Values of API management. Make sure to use a secret (or Keyvault reference) for the `post-transaction-queue-accesskey` variable.
+In the policy, you see a couple of variables. Of course you do not want those exposed inside the policy, so replace them by double curly braces ({ and }) and add them to the Named Values of API management. Make sure to use a secret (or Keyvault reference) for the accesskey variable.
