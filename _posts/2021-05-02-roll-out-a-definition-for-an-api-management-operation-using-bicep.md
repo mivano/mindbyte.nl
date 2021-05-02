@@ -3,6 +3,11 @@ published: true
 featured: false
 comments: false
 title: Roll out a definition for an API management operation using Bicep
+tags:
+  - IaC
+  - Azure
+  - API
+  - Bicep
 ---
 In a recent project I needed to roll out individual operations via infrastructure as code principles for API management in Azure using [Bicep](https://github.com/Azure/bicep). The API Management instance was already available, so I only needed an API and a couple of operations. The operation (in this case a POST call) needed a definition, a schema defining how the payload looks. The [documentation of Microsoft](https://docs.microsoft.com/en-us/azure/templates/microsoft.apimanagement/2019-01-01/service/apis/schemas?tabs=bicep) was not very descriptive how to add this.
 
