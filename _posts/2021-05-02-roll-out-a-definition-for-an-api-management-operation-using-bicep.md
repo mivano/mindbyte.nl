@@ -55,9 +55,10 @@ resource apimanagementapioperationposttransaction 'Microsoft.ApiManagement/servi
         {
           contentType: 'application/json'
           sample: '''
-          { "transaction_id": "x" }
+          { "amount": 100 }
           '''        
-          typeName: 'transaction'
+          typeName: 'Transaction'
+          schemaId: 'transaction'
         }
       ]
     }
@@ -71,40 +72,75 @@ resource apimanagementapioperationposttransaction 'Microsoft.ApiManagement/servi
         description: 'Unauthorized call.'
       }
     ]
-
   }
+  dependsOn:[
+    transactionSchema
+  ]
 }
 ```
 
-This adds the operation to the API and specifies the responses as well as the inputs. I reference the `typeName` here.
+This adds the operation to the API and specifies the responses as well as the inputs. I use the `typeName` to reference the type inside the schema (transaction contains both **Transaction** and **Error** types).
 
 So lets define that as well in Bicep:
 
 ```json
-resource transactionSchema 'Microsoft.ApiManagement/service/apis/schemas@2020-06-01-preview' = {
-  name: '${apimanagementApi.name}/transaction${versionShort}'
+resource transactionSchema 'Microsoft.ApiManagement/service/apis/schemas@2019-01-01' = {
+  name: '${apimanagementApi.name}/transaction'
   properties: {
     contentType: 'application/vnd.oai.openapi.components+json'
-    document: {     
-      definitions: {
-        'transaction': {
-          'type': 'object'
-          'properties': {
-              'transaction_id': {
-                  'type': 'string'
-                  'required': true
+    document: {
+      components: {
+        schemas: {
+          Transaction: {
+            type: 'object'
+            required: [
+              'amount'
+            ]
+            properties: {
+              id: {
+                type: 'string'
+                description: 'Internal transaction id'
+                readOnly: true
+              }           
+              amount: {
+                description: 'The amount that will be transferred'
+                type: 'number'
+                format: 'currency'
+              }
+              currency: {
+                type: 'string'
+                description: 'The currency used in this transaction (ISO 4217 3-letter currency code)'
+                externalDocs: {
+                  description: 'ISO 4217 currency codes'
+                  url: 'https://www.iso.org/iso-4217-currency-codes.html'
+                }
+              }
+            }
+          }          
+          Error: {
+            required: [
+              'code'
+              'message'
+            ]
+            type: 'object'
+            properties: {
+              code: {
+                type: 'integer'
+                format: 'int32'
+              }
+              message: {
+                type: 'string'
               }
             }
           }
+        }
       }
     }
-  }
+  }   
 }
 
 ```
 
-I use the [OpenAPI specification](https://swagger.io/docs/specification/data-models/) and can set the actual definition using the Bicep object notation (remember that this is not JSON, so no commas, add new lines, etc.). 
-
-You will need to place the schema definition above the operation code or use a `dependsOn` to make sure it is created in the correct order.
+I use the [OpenAPI specification](https://swagger.io/docs/specification/data-models/) and can set the actual definition using the Bicep object notation (remember that this is not JSON, so no commas, add new lines, etc.). I could not get this to work with the latest API version.
 
 The above allows you to create operations and definitions using Bicep and keep everything under source code.
