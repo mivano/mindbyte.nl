@@ -104,4 +104,5 @@ resource apiMonitoring 'Microsoft.ApiManagement/service/apis/diagnostics@2020-06
 The `loggerId` is a reference to the configured logger. It is also essential to use the name `/applicationinsights` as you configure this logger explicitly as this type (in contracts with the `azuremonitor` type).
 
 I included some basic settings, but you can find more options in the [documentation](https://docs.microsoft.com/en-us/azure/templates/microsoft.apimanagement/2019-01-01/service/apis/diagnostics?tabs=bicep).
+When you now start hitting your API POST endpoint, you will get traces inside Application Management within a few minutes.
 
