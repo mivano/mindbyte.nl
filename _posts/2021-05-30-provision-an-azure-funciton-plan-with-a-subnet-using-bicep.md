@@ -7,6 +7,7 @@ tags:
   - IaC
   - Azure
   - Bicep
+  - GitHub
 ---
 
 In a recent project, I need an Azure Function hosted inside a subnet. To have vnet support, I need to use a premium plan, and I wanted to use Linux hosting as well. All this must be part of my CICD rollout using [Bicep](https://github.com/Azure/bicep).
