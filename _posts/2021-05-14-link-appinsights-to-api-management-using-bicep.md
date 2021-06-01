@@ -130,7 +130,7 @@ resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-
     description: 'app specific Application Insights instance.'
     resourceId: appInsightsId
     credentials: {
-      instrumentationKey: '\{{appinsights-key}\}'
+      instrumentationKey: '{{{{appinsights-key}}}}'
     }
   }
   dependsOn:  [
