@@ -9,7 +9,7 @@ tags:
   - Bicep
 ---
 
-When you want to connect to an Azure service, you want to use a secure way for the authentication. One of the best techniques is to use a managed identity. Your application hosted inside Azure will get an identity managed by the system. This __service account__ is used to access other systems like storage accounts, keyvaults etc.
+When you want to connect to an Azure service, you want to use a secure way for the authentication. One of the best techniques is to use a managed identity. Your application hosted inside Azure will get an identity managed by the system. This _service account_ is used to access other systems like storage accounts, keyvaults etc.
 
 If you want to use this from your local machine, you do not have a managed identity. Luckily the library will have a couple of fallbacks.
 

@@ -139,7 +139,7 @@ resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-
 }
 ```
 
-> Use the double { and } braces for substitution like `{{appinsights-key}}`. Unfortunately the markdown convertor for my blog turns this into a variable as well which is represented by an empty string.
+> Use the double { and } braces for substitution. Unfortunately the markdown convertor for my blog turns this into a variable as well which is represented by an empty string.
 
 If you do have a large number of values you want to remove, you can use the below PowerShell script.
 
