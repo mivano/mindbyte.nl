@@ -15,9 +15,9 @@ Connecting to an HTTP API is tricky enough, let alone handling the authenticatio
 
 For this, I usually fall back to the libraries of Dominick Baier and Brock Allen, and in this case, the `IdentityModel.AspNetCore` package. Their [documentation](https://identitymodel.readthedocs.io/en/latest/aspnetcore/overview.html) is pretty good, but let me walk you through an example where I recently added this to an Azure Function that needed to do a call to an API.
 
-Make sure to add the package first from [NuGet](https://www.nuget.org/packages/IdentityModel.AspNetCore/). In this example, I also use [Refit](https://github.com/reactiveui/refit), but that is not a requirement.
+Make sure to add the package from [NuGet](https://www.nuget.org/packages/IdentityModel.AspNetCore/). In this example, I also use [Refit](https://github.com/reactiveui/refit), but that is not a requirement.
 
-In the `startup.cs`, I first register the access token management service. That will take care of a cache (in memory), a refresh mechanism (using Client Credentials flow), and adds the bearer token to all the calls to the service.
+In the `startup.cs`, I first register the access token management service. That will take care of a cache (in memory), a refresh mechanism (using Client Credentials flow), and adds the bearer token to all the calls to the API.
 
 ```csharp
 builder.Services.AddAccessTokenManagement(options =>
@@ -49,11 +49,11 @@ The Refit library will create a nice wrapper for the API. In the interface you d
 public interface IApiOperations
 {
     [Headers("Accept: application/json")]
-    [Get("/business/by-external/{id}")]
+    [Get("/business/{id}")]
     Task<ApiResponse<Business>> GetBusiness(string id);
 
     [Headers("Content-Type: application/json")]
-    [Post("/business/")]
+    [Post("/business")]
     Task<ApiResponse<Business>> PostBusiness([Body(BodySerializationMethod.Serialized)] Business business);
 }
 ```
@@ -127,4 +127,4 @@ public static class AccessTokenManagementExtensions
 }
 ```
 
-I doubt that this is needed in an ASPNET webapp, but it was helped for an Azure function. 
+I doubt that this is needed in an ASPNET webapp, but it solved the issue for an Azure function. 
