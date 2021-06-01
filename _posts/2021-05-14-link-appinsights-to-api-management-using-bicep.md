@@ -130,7 +130,7 @@ resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-
     description: 'app specific Application Insights instance.'
     resourceId: appInsightsId
     credentials: {
-      instrumentationKey: '&#123;&#123;appinsights-key&#125;&#125;'
+      instrumentationKey: '{ { appinsights-key } }'
     }
   }
   dependsOn:  [
@@ -138,6 +138,8 @@ resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-
   ]
 }
 ```
+
+> Use the double { and } braces for substitution like `{{appinsights-key}}`. Unfortunately the markdown convertor for my blog turns this into a variable as well which is represented by an empty string.
 
 If you do have a large number of values you want to remove, you can use the below PowerShell script.
 
