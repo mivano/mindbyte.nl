@@ -14,7 +14,7 @@ In a recent project, I need an Azure Function hosted inside a subnet. To have vn
 
 First of all, I need to roll out a hosting plan placed inside a Bicep module. A module is nothing more than a separate file containing the resource definition, some parameters, and output.
 
-```bicep
+```terraform
 @description('Name of hosting plan')
 param hostingPlanName string
 
@@ -48,7 +48,7 @@ output id string = hostingPlan.id
 
 The module will create a place to host the application, so let's create another module that will roll out a function app.
 
-```bicep
+```terraform
 @description('Id of hosting plan')
 param hostingPlanId string
 
@@ -139,7 +139,7 @@ Normally, I can also specify a `WEBSITE_CONTENTAZUREFILECONNECTIONSTRING` and `W
 
 Now we combine this by calling the above modules:
 
-```bicep
+```terraform
 // Create hosting plan
 module hostingplan './modules/hostingplan.bicep' = {
   name: 'hostingplan'

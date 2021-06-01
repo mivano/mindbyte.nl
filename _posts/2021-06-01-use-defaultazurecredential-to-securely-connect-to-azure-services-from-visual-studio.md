@@ -82,6 +82,8 @@ The managed identity from an Azure Function will be added to already defined acc
 
 We get the principalId from the module using an output:
 
-`output principalId string = functionApp.identity.principalId`
+```terraform
+output principalId string = functionApp.identity.principalId`
+```
 
 As you can see, we never stored any credentials and the same solution runs in Azure and from your local machine.
