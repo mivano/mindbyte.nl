@@ -106,3 +106,52 @@ The `loggerId` is a reference to the configured logger. It is also essential to 
 I included some basic settings, but you can find more options in the [documentation](https://docs.microsoft.com/en-us/azure/templates/microsoft.apimanagement/2019-01-01/service/apis/diagnostics?tabs=bicep).
 When you now start hitting your API POST endpoint, you will get traces inside Application Management within a few minutes.
 
+## Updated 1 June 2021
+
+Although the above method works fine, it does create a new named value each time you run the deployment. So you can end up with a lot of records called `Logger-Credentials-*` which contain the key. In order to avoid this, create your own named value and reference the value instead. It will not create a new named value.
+
+```json
+// We store the appinsights key to a named value and then make a reference to it
+resource namedValueAppInsightsKey 'Microsoft.ApiManagement/service/namedValues@2020-06-01-preview' = {
+  name: '${existingApiManagementName}/appinsights-key'
+  properties: {
+    tags: []
+    secret: false
+    displayName: 'appinsights-key'
+    value: appInsightsKey
+  }
+}
+
+// Add Application Insights to API management
+resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-06-01-preview' = {
+  name: '${existingApiManagementName}/${environment}-applicationinsights'
+  properties: {
+    loggerType: 'applicationInsights'
+    description: 'app specific Application Insights instance.'
+    resourceId: appInsightsId
+    credentials: {
+      instrumentationKey: '{{appinsights-key}}'
+    }
+  }
+  dependsOn:  [
+    namedValueAppInsightsKey
+  ]
+}
+```
+
+If you do have a large number of values you want to remove, you can use the below PowerShell script.
+
+```powershell
+$sub = 'fill in subscription id'
+$name = 'fill in name of api management instance'
+$rg = 'fill in name of resource group'
+
+$v = az apim nv list -n $name -g $rg --subscription $sub -o json | ConvertFrom-Json 
+
+$v | foreach { 
+    if ($_.displayName  -like 'Logger-Credentials-*') {
+        Write-Output $_.displayName
+        az apim nv delete -n $name -g $rg --subscription $sub --named-value-id $_.name -y
+    }
+}
+```
