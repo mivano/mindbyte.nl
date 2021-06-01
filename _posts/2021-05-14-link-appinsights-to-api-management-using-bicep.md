@@ -15,7 +15,7 @@ The API Management instance was already available, so I only needed an API and a
 
 First I need an API:
 
-```json
+```terraform
 resource apimanagementApi 'Microsoft.ApiManagement/service/apis@2020-06-01-preview' = {
   name: '${existingApiManagementName}/${apiName}'
   properties: {
@@ -37,7 +37,7 @@ The `existingApiManagementName` and `apiName` are variables used to reference th
 
 Add an operation to it, so we have something to test with:
 
-```json
+```terraform
 var operationName = '${apimanagementApi.name}/posttransaction'
 
 resource apimanagementapioperationposttransaction 'Microsoft.ApiManagement/service/apis/operations@2020-06-01-preview' = {
@@ -71,7 +71,7 @@ appinsightsKey=$(az resource show --name nameofyourinstance -g yourresourcegroup
 
 And now we register the logger with as name `your-applicationinsights`. The instrumentationKey is placed as a **Named values** secret value automatically.
 
-```json
+```terraform
 resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-06-01-preview' = {
   name: '${existingApiManagementName}/your-applicationinsights'
   properties: {
@@ -87,7 +87,7 @@ resource appInsightsAPIManagement 'Microsoft.ApiManagement/service/loggers@2020-
 
 We can now link the API with the logger:
 
-```json
+```terraform
 resource apiMonitoring 'Microsoft.ApiManagement/service/apis/diagnostics@2020-06-01-preview' = {
   name: '${apimanagementApi.name}/applicationinsights'
   properties: {
@@ -110,7 +110,7 @@ When you now start hitting your API POST endpoint, you will get traces inside Ap
 
 Although the above method works fine, it does create a new named value each time you run the deployment. So you can end up with a lot of records called `Logger-Credentials-*` which contain the key. In order to avoid this, create your own named value and reference the value instead. It will not create a new named value.
 
-```json
+```terraform
 // We store the appinsights key to a named value and then make a reference to it
 resource namedValueAppInsightsKey 'Microsoft.ApiManagement/service/namedValues@2020-06-01-preview' = {
   name: '${existingApiManagementName}/appinsights-key'

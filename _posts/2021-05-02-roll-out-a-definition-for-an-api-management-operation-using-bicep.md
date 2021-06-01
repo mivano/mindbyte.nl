@@ -17,7 +17,7 @@ The API Management instance was already available, so I only needed an API and a
 
 First I need an API:
 
-```json
+```terraform
 resource apimanagementApi 'Microsoft.ApiManagement/service/apis@2020-06-01-preview' = {
   name: '${existingApiManagementName}/${apiName}'
   properties: {
@@ -39,7 +39,7 @@ The `existingApiManagementName` and `apiName` are variables used to reference th
 
 I can now add operations to it:
 
-```json
+```terraform
 var operationName = '${apimanagementApi.name}/posttransaction'
 
 resource apimanagementapioperationposttransaction 'Microsoft.ApiManagement/service/apis/operations@2020-06-01-preview' = {
@@ -83,7 +83,7 @@ This adds the operation to the API and specifies the responses as well as the in
 
 So lets define that as well in Bicep:
 
-```json
+```terraform
 resource transactionSchema 'Microsoft.ApiManagement/service/apis/schemas@2019-01-01' = {
   name: '${apimanagementApi.name}/transaction'
   properties: {
