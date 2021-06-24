@@ -8,14 +8,14 @@ tags:
   - API
   - Bicep
 ---
-In a previous post, I described how to create a `SharedKey` which could be used to drop data directly into a storage account queue from API management. Although that trick works fine, you still needed to have the storage account access key. Of course, this one is stored in a keyvault and referenced via a named value, but still something to maintain and could possible leak (it is visible in the trace though).
+In a [previous post](https://mindbyte.nl/http-apis/2021/05/01/post-data-from-api-management-directly-to-a-storage-account-queue.html), I described how to create a `SharedKey` which could be used to drop data directly into a storage account queue from API management. Although that trick works fine, you still needed to have the storage account access key. Of course, this one is stored in a keyvault and referenced via a named value, but still something to maintain and could possible leak (it is visible in the trace though).
 
 A better alternative is to use a [managed identity](https://docs.microsoft.com/en-us/azure/api-management/api-management-authentication-policies#ManagedIdentity), which works pretty easy. So let's adjust our sample to use this instead.
 
 Assuming you have an API Management instead rolled out with a storage account, you will need to add the below policy:
 
 ```xml
-    <policies>
+<policies>
     <inbound>
         <base />
 
@@ -43,6 +43,7 @@ Assuming you have an API Management instead rolled out with a storage account, y
           }</set-body>
 
         <rewrite-uri template="{{post-transaction-queue-name}}/messages" copy-unmatched-params="true" />
+
         <!--  Don't expose APIM subscription key to the backend. -->
         <set-header name="ocp-apim-subscription-key" exists-action="delete" />
 
