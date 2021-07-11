@@ -5,12 +5,13 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
  
 # Site Settings
 locale                   : "en-US"
 title                    : "MindByte"
 title_separator          : "-"
+subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Michiel van Oudheusden" # &name is a YAML anchor which can be *referenced later
 description              : &description "Microsoft .NET consultant, developer, architect. Focus on ALM, DevOps, APIs, Azure and everything around it."
 url                      : https://www.mindbyte.nl # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -20,9 +21,9 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # "staticman_v2" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman_v2", "staticman" "custom"
+  provider               : "giscus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
-    shortname            : "mivano"
+    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -30,6 +31,19 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
+  utterances:
+    theme                : "github-dark" # "github-dark"
+    issue_term           : "pathname"
+  giscus:
+    repo_id              : "MDEwOlJlcG9zaXRvcnkxMjYwOTA2MDY="
+    category_name        : "Announcements"
+    category_id          : "DIC_kwDOB4P9bs4B-Sid"
+    discussion_term      : "og:title" # "pathname" (default), "url", "title", "og:title"
+    reactions_enabled    : 1 # '1' for enabled (default), '0' for disabled
+    theme                : "dark" # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
+  staticman:
+    branch               : # "master"
+    endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
 staticman:
   allowedFields          : # ['name', 'email', 'message']
   branch                 : "master"
@@ -68,7 +82,7 @@ search_provider          : lunr # lunr (default), algolia
 
 
 # SEO Related
-google_site_verification :  # Replace this with your ID, or delete
+google_site_verification : "56OViBvdeJ4nT29zKUZ1EJuWqCdQaziF_FbP0ol4FmE" 
 bing_site_verification   :
 yandex_site_verification :
 naver_site_verification  :
@@ -80,7 +94,7 @@ facebook:
   username               : 
   app_id                 :
   publisher              :
-og_image                 : "/assets/images/site-logo.png" # Open Graph/Twitter default site image
+og_image                 : "/images/profile.jpg" # Open Graph/Twitter default site image
 # For specifying social profiles, used in _includes/seo.html
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -88,6 +102,8 @@ social:
   name                   : # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
     - "https://twitter.com/mivano"
+    - "https://www.linkedin.com/in/michielvanoudheusden"
+    - "https://github.com/mivano"
 
 # Analytics
 analytics:
@@ -200,6 +216,7 @@ defaults:
       path: ""
       type: posts
     values:
+      show_date: true
       layout: single
       author_profile: true
       read_time: true
