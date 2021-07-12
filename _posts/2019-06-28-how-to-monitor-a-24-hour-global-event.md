@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: How to monitor a 24 hour global event
 description: How to monitor a 24 hour global event
 tags:

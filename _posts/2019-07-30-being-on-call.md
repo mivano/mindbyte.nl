@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Being on call
 description: Being on call
 tags:

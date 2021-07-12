@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Use Application Insights over multiple systems to track dependencies
 description: Use Application Insights over multiple systems to track dependencies
 tags:

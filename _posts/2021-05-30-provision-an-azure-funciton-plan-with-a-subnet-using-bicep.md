@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Provision an Azure Function plan with a subnet using Bicep
 tags:
   - IaC

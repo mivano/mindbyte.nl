@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Link Application Insights to Azure API Management using Bicep
 tags:
   - IaC

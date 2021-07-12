@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Simple OAuth2 API authentication with token caching and refetching in an Azure Function using IdentityModel and Refit 
 tags:
   - Coding

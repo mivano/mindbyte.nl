@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Generate Kubernetes Access Token
 description: >-
   How to retrieve an access token to use for the API calls to the Kubernetes
@@ -19,7 +18,7 @@ There are various ways to connect to a Kubernetes cluster, but for a recent even
 
 To talk to the AKS cluster, I used the open source [KubernetesClient](https://www.nuget.org/packages/KubernetesClient/) NuGet package. Under the hood, it will call the REST API of the cluster to perform actions.
 
-Creating a connection is a matter of setting up a `KubernetesClientConfiguration` instance. 
+Creating a connection is a matter of setting up a `KubernetesClientConfiguration` instance.
 
 ```csharp
   var config = new KubernetesClientConfiguration

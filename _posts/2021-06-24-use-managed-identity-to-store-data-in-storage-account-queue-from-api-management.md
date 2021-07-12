@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Use managed identity to store data in storage account queue from API Management
 tags:
   - Azure

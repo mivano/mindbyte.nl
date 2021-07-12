@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Use DefaultAzureCredential to securely connect to Azure services from Visual Studio
 tags:
   - Coding

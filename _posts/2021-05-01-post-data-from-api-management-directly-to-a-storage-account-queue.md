@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: POST data from API Management directly to a storage account queue
 tags:
   - Azure

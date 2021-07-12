@@ -2,7 +2,6 @@
 published: true
 mathjax: false
 featured: false
-comments: false
 title: Analyze your project with SonarQube using a docker container
 tags:
   - dotnet

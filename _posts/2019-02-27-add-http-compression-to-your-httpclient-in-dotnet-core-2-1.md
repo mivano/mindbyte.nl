@@ -1,7 +1,6 @@
 ---
 published: true
 featured: false
-comments: false
 title: Add http compression to your httpclient in dotnet core 2.1
 description: >-
   Use the HttpClientFactory to add compression to the dotnet core 2.1

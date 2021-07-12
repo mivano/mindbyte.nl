@@ -7,7 +7,6 @@ tags:
   - LogicApp
   - ARM
 featured: false
-comments: false
 ---
 In a recent project, we use Infrastructure as Code to roll out resources to Azure. For this, we use ARM templates, and part of this template is the deployment of Azure Alerts and a Logic App. 
 When an alert fires, the Logic App is called, which performs some processing and forwards the call to our incident management tool called [VictorOps](https://victorops.com/).
