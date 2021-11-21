@@ -95,3 +95,4 @@ Since it is a Jekyll site, we can use templating and liquid to place the content
 ## Conclusion
 
 Using the GitHub CLI it is relatively simple to gather the data needed. The GitHub Actions workflow provides the credentials, and the CLI is already installed on the GitHub Build Agent. Hosting a static website on GitHub pages with Jekyll is also a simple task and offers a lot of flexibility. 
+Feel free to fork this project and use it to your own needs. The `readme.md` file and the `_config.yml` files are the ones to look at to get started. Configure the workflow file to point to your organization and push the code back to GitHub and configure GitHub pages to have your own marketplace website.
