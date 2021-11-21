@@ -7,7 +7,7 @@ tags:
   - CLI
   - Tailwind
   - Jekyll
-description: >-
+excerpt: >-
   When you work with GitHub, you most likely use GitHub Actions as well. A great way to execute all kinds of tasks, like interacting with Git, performing a build, running tests, or deploying to an environment. 
   There are a lot of different actions available since it is so easy to create one. With some metadata, you can add your actions to the GitHub marketplace for others to find. But what if you want your own marketplace?
 ---
@@ -36,7 +36,7 @@ for repo in $repos; do
 done
 ```
 
-We now need to check if the file called `action.yml` actually exists by downloading it. The API option helps here again:
+We now need to check if the file called `action.yml` actually exists by downloading it. The API command helps here again:
 
 ```bash
 actionfilename="action.yml"
