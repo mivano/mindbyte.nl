@@ -7,8 +7,10 @@ tags:
   - CLI
   - Tailwind
   - Jekyll
+description: >-
+  When you work with GitHub, you most likely use GitHub Actions as well. A great way to execute all kinds of tasks, like interacting with Git, performing a build, running tests, or deploying to an environment. 
+  There are a lot of different actions available since it is so easy to create one. With some metadata, you can add your actions to the GitHub marketplace for others to find. But what if you want your own marketplace?
 ---
-
 > TLDR; see the [repo](https://github.com/mivano/github-actions-catalog) or the [demo website](https://mivano.github.io/github-actions-catalog) for more details.
 
 When you work with GitHub, you most likely use GitHub Actions as well. A great way to execute all kinds of tasks, like interacting with Git, performing a build, running tests, or deploying to an environment. 
