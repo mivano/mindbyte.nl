@@ -15,7 +15,7 @@ Using Jekyll, you can do a lot already, but there are many things to handle, lik
 
 So how to use it? It boils down to having a documentation folder like `/docs/` with markdown files. Make sure there is a file called `README.md` (mind the casing), which acts as the start page. In the root of your repository, you need a file `doctave.yml`, containing at least a title. This whole process is documented nicely on their [website](https://cli.doctave.com/tutorial). I also needed to add a folder `/docs/_include` containing an empty file called `.nojekyll` to prevent Jekyll from creating a site as well.
 
-When you have the basics and Doctave installed, you can either `serve` or `build` the site. 
+When you have the basics and Doctave installed, you can either `serve` or `build` the site. You can add navigation links by changing the `doctave.yml` file and add titles to the files by including frontmatter on top of the markdown. So still some customisation can be done.
 
 But now, we want to host the generated site on GitHub Pages instead of Doctave. This is a bit more involved. So let's create a workflow file using GitHub Actions to build and publish your documentation website.
 
