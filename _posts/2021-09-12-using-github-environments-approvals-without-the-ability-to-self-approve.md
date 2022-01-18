@@ -115,7 +115,7 @@ jobs:
         uses: azure/login@v1
         if: success()
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{ "{{" }} secrets.AZURE_CREDENTIALS }}
 ```
 
 For simplicity, I skipped the build and deploy steps. Note that you need to add an `if: success()` to the subsequent steps, so they only run when the check is correct. Also, see that the `prd` environment is requested. This will trigger the approval and provides access to the secrets in this environment.

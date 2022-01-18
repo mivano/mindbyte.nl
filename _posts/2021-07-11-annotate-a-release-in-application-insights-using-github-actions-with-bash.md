@@ -42,7 +42,7 @@ Inside my CICD pipeline, I have a step that deploys my application. When done, I
           # Do the actual deployment
 
           branch=${GITHUB_HEAD_REF##*/}
-          ${{ env.OUTPUT_PATH }}/scripts/create-release-annotation.sh tst "Release for $branch" "Release for $branch and SHA ${GITHUB_SHA}" "${GITHUB_ACTOR}"
+          ${{ "{{" }} env.OUTPUT_PATH }}/scripts/create-release-annotation.sh tst "Release for $branch" "Release for $branch and SHA ${GITHUB_SHA}" "${GITHUB_ACTOR}"
 
 ```
 
@@ -56,7 +56,7 @@ When releasing a deployment, I instead show the version (the tag):
           # Do the actual deployment
 
           tag=${GITHUB_REF/refs\/tags\//}
-          ${{ env.OUTPUT_PATH }}/scripts/create-release-annotation.sh prd "$tag" "Release of $tag (${GITHUB_SHA})" "${GITHUB_ACTOR}"
+          ${{ "{{" }} env.OUTPUT_PATH }}/scripts/create-release-annotation.sh prd "$tag" "Release of $tag (${GITHUB_SHA})" "${GITHUB_ACTOR}"
 ```
 
 Inside Application Insights, I get deployment information like shown below.

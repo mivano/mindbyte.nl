@@ -58,7 +58,7 @@ jobs:
       - name: get changed files
         id: getfile
         run: |
-          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -e '.*\.md$' -e '.*\.mmd$' -e '.*\.mermaid$' | xargs)"
+          echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r ${{ "{{" }} github.sha }} | grep -e '.*\.md$' -e '.*\.mmd$' -e '.*\.mermaid$' | xargs)"
 
       - name: mermaid files changed
         run: |
@@ -82,7 +82,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ "{{" }} secrets.GITHUB_TOKEN }}
           commit-message: Add compiled mermaid
           title: '[MMDC] New mermaid files compiled'
           body: |
@@ -90,8 +90,8 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-pull-request
           labels: report, automated pr
-          assignees: ${{ github.actor }}
-          reviewers: ${{ github.actor }}
+          assignees: ${{ "{{" }} github.actor }}
+          reviewers: ${{ "{{" }} github.actor }}
 ```
 
 This workflow will trigger on pushes to GitHub for files with specific extensions. The `neenjaw/compile-mermaid-markdown-action` action performs the actual work and produces a set of images and alterations to the markdown files. It will offer those changes to you using a PR to your feature branch. So merge those into your branch when you are okay with them. 
