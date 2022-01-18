@@ -49,7 +49,7 @@ jobs:
       with:
         build_dir: site/
       env:
-        GITHUB_TOKEN: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;
+        GITHUB_TOKEN: {{ "{{" }} secrets.GITHUB_TOKEN }}
 ```
 
 This will checkout the code, install Doctave on the build agent, and build the documentation. Then it will deploy the documentation (placed in the `site` folder) to GitHub Pages. It needs your GitHub token to do that. Notice that I used the `--allow-failed-checks` flag to convert errors into warnings as I still have some links not working correctly. 
