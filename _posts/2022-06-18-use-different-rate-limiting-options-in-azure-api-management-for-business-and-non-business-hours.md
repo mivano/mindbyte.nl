@@ -88,7 +88,7 @@ resource apimImportProductPolicy 'Microsoft.ApiManagement/service/products/polic
 
 And for the named values
 
-```bicep
+```terraform
 resource namedValueInsideBusinessHours 'Microsoft.ApiManagement/service/namedValues@2020-06-01-preview' = {
   name: '${existingApiManagementName}/calls-per-minute-import-inside-business-hours'
   properties: {
