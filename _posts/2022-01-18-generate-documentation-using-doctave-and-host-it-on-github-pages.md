@@ -57,3 +57,5 @@ This will checkout the code, install Doctave on the build agent, and build the d
 When deployed to GitHub Pages, you do need to configure your site under the settings. Pick the `gh-pages` branch and select either a private url or a public one. It will show you the site's url, which should now contain your generated documentation site. Every change you make to your docs is built, and when run on main, it is deployed as well.
 
 For me, this is a great way to share documentation with, for example, other developers and still keep the docs close to your code. Furthermore, no extra steps are needed to convert Mermaid diagrams!
+
+> Update 18 Jun 2022: GitHub has added support for [rendering Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/), although Doctave does have other benefits as well.
