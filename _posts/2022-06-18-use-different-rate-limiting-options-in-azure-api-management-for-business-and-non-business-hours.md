@@ -5,6 +5,7 @@ tags:
   - Azure
   - API
   - APIM  
+  - Bicep
 ---
 
 Using API Management in front of your application has many benefits; one is using rate limiting. Rate limiting is a way to limit the number of requests that can be made to an API. Limiting the number of request is useful when for example, your backend service cannot handle a high amount of calls. When the caller sends more requests than allowed, the API returns a 429 (too many requests) response and indicates when the client can try again.
@@ -46,7 +47,7 @@ The condition test for a time between 7 and 18 hours and not on a weekend. It wo
 
 So play with the numbers and the date range, apply the policy with for example Bicep:
 
-```bicep
+```terraform
 resource apimImportProductPolicy 'Microsoft.ApiManagement/service/products/policies@2020-06-01-preview' = {
   name: '${apimanagementImportProduct.name}/policy'
   properties: {
