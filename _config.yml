@@ -107,9 +107,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : "google-universal" # false (default), "google", "google-universal", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : "UA-59660007-1" # Replace this with your ID, or delete
+    tracking_id          : "G-6BE98RVQFT" # Replace this with your ID, or delete
 
 
 # Site Author
