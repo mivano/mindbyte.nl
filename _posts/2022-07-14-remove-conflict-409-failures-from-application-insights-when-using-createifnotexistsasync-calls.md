@@ -7,11 +7,11 @@ tags:
   - Logging
 ---
 
-Application Insights is not only an excellent tool to see what your application is doing, but it also shows you how your dependencies are behaving. There is not much that you need to configure to get this feature as our of-the-box Application Insights [tracks a number of dependencies automatically](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-dependencies). If this is not enough and you need to track another dependency yourself, you can [add DependencyTelemetry](https://mindbyte.nl/2019/06/28/use-application-insights-over-multiple-systems-to-track-dependencies.html).
+Application Insights is not only an excellent tool to see what your application is doing, but it also shows you how your dependencies are behaving. There is not much that you need to configure to get this feature as our of-the-box Application Insights [tracks a number of dependencies automatically](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-dependencies). If this is not enough and you need to track another dependency yourself, you can add [DependencyTelemetry to your code](https://mindbyte.nl/2019/06/28/use-application-insights-over-multiple-systems-to-track-dependencies.html).
 
 One of the dependency telemetry features is to indicate if a call was successful or not by adding a `call status` of false. As such, they will appear in the Failed requests section of the Application Insights dashboard.
 
-Unfortunately, this is also the case if you perform a check to validate if a container or queue exists. For example, using this call:
+Unfortunately, this is also the case if you perform a check to validate if a container or queue exists. For example, using this method:
 
 ```csharp
 await table.CreateIfNotExistsAsync()
@@ -23,15 +23,14 @@ This does not provide an accurate representation of what is happening, so here a
 
 Create queues and containers in a separate phase instead of each time. If you have static known names for your queues and containers, you can create them at your application's startup or during deployment.
 
-Another option is to mark them as successful. You can do this with an `ITelemetryInitializer` by changing the success to be true.
+Another option is to simply mark them as successful. You can do this with an `ITelemetryInitializer` by changing the success to be true.
 
 ```csharp
 public class AzureCheckExistsInitializer : ITelemetryInitializer
 {
     public void Initialize(ITelemetry telemetry)
     {
-        if (
-            telemetry is DependencyTelemetry dependencyTelemetry &&
+        if (telemetry is DependencyTelemetry dependencyTelemetry &&
             (dependencyTelemetry.Type == "Azure table" || dependencyTelemetry.Type == "Azure blob") &&
             dependencyTelemetry.ResultCode == "409" &&
             dependencyTelemetry.Success == false)
@@ -48,7 +47,7 @@ Register this initializer in the startup logic of your application:
 services.AddSingleton<ITelemetryInitializer, AzureCheckExistsInitializer>();
 ```
 
-Still keeping this kind of telemetry around might also not be a good idea. Although Application Insight will perform sampling, dependency tracking can consume a lot of data and cost. You can use an `ITelemetryProcessor` to filter out the telemetry you don't want to see.
+However, keeping this kind of telemetry around might also not be a good idea. Although Application Insight will perform sampling, dependency tracking can consume a lot of data and cost. You can use an `ITelemetryProcessor` to filter out the telemetry you don't want to see.
 
 ```csharp
 public class RemoveConflictDependencyFilter : ITelemetryProcessor
