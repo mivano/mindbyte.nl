@@ -3,7 +3,7 @@ published: true
 title: Remove conflict (409) failures from Application Insights when using CreateIfNotExistsAsync calls
 tags:
   - Azure
-  - APIM  
+  - ApplicationInsights  
   - Logging
 ---
 
