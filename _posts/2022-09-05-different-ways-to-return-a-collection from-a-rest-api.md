@@ -3,6 +3,7 @@ published: true
 title: Different ways to return a collection from a REST API
 tags:
   - API
+  - APIM
   - REST  
 ---
 
