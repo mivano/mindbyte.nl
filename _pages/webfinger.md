@@ -1,6 +1,7 @@
 ---
 sitemap: false
 permalink: /.well-known/webfinger
+layout: null
 ---
 
 {
