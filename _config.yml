@@ -111,9 +111,6 @@ analytics:
   google:
     tracking_id          : "G-6BE98RVQFT" # Replace this with your ID, or delete
 
-mastodon:
-  username: mivano
-  instance: mastodon.social
 
 # Site Author
 author:
@@ -269,7 +266,6 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
-  - jekyll/mastodon_webfinger
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -279,7 +275,6 @@ whitelist:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
-  - jekyll/mastodon_webfinger
 
 # Archives
 #  Type
