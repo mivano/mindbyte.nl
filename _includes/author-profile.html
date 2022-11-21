@@ -62,6 +62,15 @@
         </li>
       {% endif %}
 
+      {% if author.digest %}
+      <li>
+        <a href="{{ author.digest }}">
+          <meta itemprop="Newsletter" content="{{ author.digest }}" />
+          <i class="fas fa-fw fa-newspaper-o" aria-hidden="true"></i><span class="label">{{ site.data.ui-text[site.locale].newsletter_label | default: "Newsletter" }}</span>
+        </a>
+      </li>
+      {% endif %}
+
       {% if author.keybase %}
         <li>
           <a href="https://keybase.io/{{ author.keybase }}" itemprop="sameAs" rel="nofollow noopener noreferrer">
