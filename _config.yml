@@ -104,6 +104,7 @@ social:
     - "https://twitter.com/mivano"
     - "https://www.linkedin.com/in/michielvanoudheusden"
     - "https://github.com/mivano"
+    - "https://mindbyte.beehiiv.com"
 
 # Analytics
 analytics:
@@ -145,7 +146,7 @@ author:
   xing             :
   youtube          :
   mastodon         : mastodon.social/@mivano
-  digest           : https://digest.mindbyte.nl
+  digest           : https://mindbyte.beehiiv.com
 
 # Reading Files
 include:
