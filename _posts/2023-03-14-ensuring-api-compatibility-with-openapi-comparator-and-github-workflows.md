@@ -12,7 +12,7 @@ Maintaining backward compatibility is crucial when developing APIs. As APIs evol
 
 One way to detect breaking changes in APIs is by using open-source tools such as [OpenAPI Comparator](https://github.com/criteo/openapi-comparator) and [OpenAPI-diff](https://github.com/OpenAPITools/openapi-diff). OpenAPI Comparator is a tool developed by Criteo that can help detect breaking changes in an API by comparing different versions of the API specifications. OpenAPI-diff, on the other hand, is an open-source tool developed by OpenAPITools that can also compare different versions of an API specification and highlight any differences between them.
 
-## Sample
+## Example
 
 To further illustrate the use of open-source tools such as OpenAPI-diff in detecting breaking changes in APIs, let's consider an example where we download the default Petstore OpenAPI definition file, make a breaking change, and run the OpenAPI-diff container to compare the old and new versions.
 
