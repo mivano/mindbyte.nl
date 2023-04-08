@@ -4,6 +4,8 @@ title: "Maximizing Your Azure Cost Savings: Strategies, Tools, and License Benef
 tags:
   - Azure
   - Cost
+header:
+  teaser: 'https://mindbyte.nl/images/cost-management_value-prop-image-3.png'
 ---
 
 Are you looking for ways to optimize your Azure costs and manage your cloud spending more effectively? Azure offers a range of tools and strategies to help you save money and stay on top of your costs. In this article, I will explore some of the key ways to optimize your Azure costs and provide an overview of the Azure cost management tools available to you.
