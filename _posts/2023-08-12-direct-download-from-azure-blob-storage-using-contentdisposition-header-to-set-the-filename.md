@@ -3,7 +3,8 @@ published: true
 title: "Direct download from Azure Blob storage using Content-Disposition header to set the filename"
 tags:
  - Azure
-
+header:
+  teaser: 'https://mindbyte.nl/images/contentdisposition.png'
 ---
 
 For an application I m building, I store attachments on Azure in blob storage. This service is a relatively cheap and scalable solution for files that need to be retrieved again by others.
