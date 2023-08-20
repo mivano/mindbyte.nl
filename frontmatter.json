@@ -1,0 +1,102 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "published",
+          "name": "published",
+          "type": "datetime"
+        },
+        {
+          "title": "title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "header",
+          "name": "header",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "teaser",
+              "name": "teaser",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "jekyll",
+  "frontMatter.content.publicFolder": "assets",
+  "frontMatter.preview.host": "http://localhost:4000",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "_posts",
+      "path": "[[workspace]]/_posts"
+    }
+  ],
+  "frontMatter.taxonomy.tags": [
+    "AKS",
+    "API",
+    "APIM",
+    "ARM",
+    "Actions",
+    "ApplicationInsights",
+    "Azure",
+    "AzureDevOps",
+    "Bicep",
+    "CICD",
+    "CLI",
+    "Coding",
+    "Compliance",
+    "Cost",
+    "Documentation",
+    "Functions",
+    "GitHub",
+    "GitHub Actions",
+    "IaC",
+    "IncidentManagement",
+    "Jekyll",
+    "Logging",
+    "LogicApp",
+    "MermaidJS",
+    "OAuth2",
+    "OpenAPI",
+    "Pages",
+    "REST",
+    "Remote",
+    "Tailwind",
+    "VSTS",
+    "api",
+    "appinsights",
+    "applicationinsights",
+    "azure",
+    "devops",
+    "docker",
+    "dotnet",
+    "ef",
+    "gdbc",
+    "http",
+    "kubernetes",
+    "monitoring",
+    "oncall",
+    "rabbitmq",
+    "scrum",
+    "security",
+    "sonarqube",
+    "support"
+  ],
+  "frontMatter.taxonomy.categories": [
+    "HTTP-APIs"
+  ]
+}
