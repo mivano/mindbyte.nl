@@ -45,6 +45,7 @@
       "path": "[[workspace]]/_posts"
     }
   ],
+  "frontMatter.git.enabled": true,
   "frontMatter.taxonomy.tags": [
     "AKS",
     "API",
