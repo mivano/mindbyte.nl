@@ -29,7 +29,7 @@
             {
               "title": "teaser",
               "name": "teaser",
-              "type": "string"
+              "type": "image"
             }
           ]
         }
@@ -37,7 +37,7 @@
     }
   ],
   "frontMatter.framework.id": "jekyll",
-  "frontMatter.content.publicFolder": "assets",
+  "frontMatter.content.publicFolder": "images",
   "frontMatter.preview.host": "http://localhost:4000",
   "frontMatter.content.pageFolders": [
     {
