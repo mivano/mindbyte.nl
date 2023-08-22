@@ -1,6 +1,6 @@
 ---
 published: 2023-08-22T20:30:52.622Z
-title: how to get a token to access the Azure cost API
+title: How to get a token to access the Azure cost API
 tags:
   - Azure
   - Cost
@@ -19,7 +19,7 @@ Obtaining a token to access the Azure Cost API without burdening users with user
 
 The answer was found in `DefaultAzureCredentials`. This functionality attempts [various credential providers](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/src/Credentials/DefaultAzureCredential.cs) to find a valid one, offering a seamless way to authenticate. The approach enabled the retrieval of a token without adding complex authentication steps.
 
-## ChainedTokenCredential with AzureCliCredential**
+## ChainedTokenCredential with AzureCliCredential
 
 To refine the process, a new `ChainedTokenCredential` was created, placing the `AzureCliCredential` at the start and then falling back to the default options if necessary. Below is the code snippet that encapsulates this elegant solution:
 
