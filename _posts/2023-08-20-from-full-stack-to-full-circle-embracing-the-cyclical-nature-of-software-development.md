@@ -4,7 +4,7 @@ title: "From Full Stack to Full Circle: Embracing the Cyclical Nature of Softwar
 tags:
   - Coding
 header:
-  teaser: /8-gHEU6FD4RKaATGA.png
+  teaser: 'https://mindbyte.nl/images/8-gHEU6FD4RKaATGA.png'
 slug: full-stack-full-circle-embracing-cyclical-nature-software-development
 excerpt: |
   In a recent conversation with a senior colleague, I jokingly referred to myself not as a full stack developer, but as a "full circle developer". While it started as a humorous remark, the more I thought about it, the more the concept resonated with me. In the fast-evolving world of technology, we often find ourselves coming full circle, revisiting the same technologies and challenges we thought we had left behind.
