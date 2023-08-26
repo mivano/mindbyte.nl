@@ -1,5 +1,5 @@
 ---
-published: 2023-08-25T22:59:51.000Z
+published: 2023-08-25T22:59:50.000Z
 title: Retrieving the active Azure Subscription ID from the AZ CLI Context
 tags: []
 header:
