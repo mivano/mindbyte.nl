@@ -1,5 +1,5 @@
 ---
-published: 2023-08-27T22:25:47.000Z
+published: 2023-08-27T22:25:46.000Z
 title: Making API calls more resilient
 tags:
   - Azure
