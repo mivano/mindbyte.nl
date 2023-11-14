@@ -19,6 +19,7 @@ For completness sake, I have included a full example of a workflow file that use
 
 By setting the `NUGET_PACKAGES` environment variable, you can make sure that the NuGet packages are restored to the same location as the cache. This will make sure that the cache is used when restoring the NuGet packages.
 
+{% raw %}
 ```yaml
 name: Build Services
 on:
@@ -43,10 +44,10 @@ jobs:
 
       - uses: actions/cache@v3
         with:
-          path: $\.nuget\packages
-          key: $-nuget-$ #hash of project files
+          path: ${{ github.workspace }}\.nuget\packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }} #hash of project files
           restore-keys: |
-            $-nuget-
+            ${{ runner.os }}-nuget-
 
       - name: Restore dependencies
         run:  dotnet restore solution.sln 
@@ -68,6 +69,7 @@ jobs:
           path: publish/**
           if-no-files-found: error 
 ```
+{% endraw %}
 
 This workflow will restore, build, test and package the solution. The resulting package will be uploaded as an artifact and can be deployed in subsequent steps.
 
