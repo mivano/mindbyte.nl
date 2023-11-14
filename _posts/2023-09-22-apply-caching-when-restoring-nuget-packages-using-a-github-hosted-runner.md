@@ -33,7 +33,7 @@ jobs:
       packages: write
       contents: read
     env:
-      NUGET_PACKAGES: $/.nuget/packages    
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages    
     steps:
       - uses: actions/checkout@v3
       
