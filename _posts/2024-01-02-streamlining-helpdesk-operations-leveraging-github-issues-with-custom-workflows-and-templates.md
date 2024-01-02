@@ -3,7 +3,7 @@ published: 2024-01-02T20:59:57.060Z
 title: "Streamlining Helpdesk Operations: Leveraging GitHub Issues with Custom Workflows and Templates"
 tags: [github, github-actions, helpdesk]
 header:
-  teaser: "/images/cdc-_XLJy3h77cw-unsplash.jpg"
+  teaser: "https://mindbyte.nl/images/cdc-_XLJy3h77cw-unsplash.jpg"
 slug: streamlining-helpdesk-operations-leveraging-github-issues-custom-workflows-templates
 ---
 
@@ -30,9 +30,13 @@ For the purpose of an internal helpdesk, where submissions are likely to be dire
 
 1. **Create a New Repository**: Start with a fresh slate by setting up a new repository within your organization. A simple and descriptive name like 'servicedesk' or 'helpdesk' works well. Remember to keep it internal/private to maintain confidentiality. ![Create Repository](/images/create-helpdesk-repo.png)
 2. **Craft Your README.md**: The `README.md` file is the first point of contact for users visiting your repository. It’s a Markdown file that can be used to provide essential instructions and guidelines. Here’s how you can structure it:
+
 *Introduction*: Briefly describe the purpose of the helpdesk and what types of issues should be submitted here.
+
 *How to Submit an Issue*: Give clear, step-by-step instructions on how to create a new issue, including guidance on writing a good title and description.
+
 *Label Usage*: Explain how labels are used within the repository to categorize and prioritize issues.
+
 *Response Times and Process*: Outline what users can expect in terms of response times and the process their issues will go through.
 
 For example, here's a sample README.md file:
@@ -193,9 +197,9 @@ By implementing these templates and configuration settings, you streamline the i
 
 As the number of issues in your GitHub helpdesk repository grows, effective management and maintenance become crucial. To ensure efficiency and order, we utilize a combination of GitHub workflows and Probot actions.
 
-**Preventing Empty Issues**
+### Preventing Empty Issues
 
-1. **Request-Info Bot**: One of the common frustrations in issue tracking is receiving issues with a title but no descriptive content. To address this, we implement the Request-Info bot ([Request Info Probot](https://probot.github.io/apps/request-info/)). This bot is configured to prompt for more information on such issues. Install it in your helpdesk repository and create a `.github/config.yml` file with the following contents:
+**Request-Info Bot**: One of the common frustrations in issue tracking is receiving issues with a title but no descriptive content. To address this, we implement the Request-Info bot ([Request Info Probot](https://probot.github.io/apps/request-info/)). This bot is configured to prompt for more information on such issues. Install it in your helpdesk repository and create a `.github/config.yml` file with the following contents:
 
 ```yaml
 # Configuration for request-info - https://github.com/behaviorbot/request-info
@@ -214,17 +218,17 @@ requestInfoDefaultTitles:
 requestInfoLabelToAdd: needs-more-info
 ```
 
-**Automated Assignment of Issues**
+### Automated Assignment of Issues
 
-2. **Auto-Assign Issue Action**: To ensure issues are promptly addressed, we use the [Auto-Assign Issue Action](https://github.com/marketplace/actions/auto-assign-issue). This action automatically assigns new issues to the responsible team members. While issue templates allow for assigning users, this action covers scenarios where blank issues are created.
+**Auto-Assign Issue Action**: To ensure issues are promptly addressed, we use the [Auto-Assign Issue Action](https://github.com/marketplace/actions/auto-assign-issue). This action automatically assigns new issues to the responsible team members. While issue templates allow for assigning users, this action covers scenarios where blank issues are created.
 
-**Labeling for Triage**
+### Labeling for Triage
 
-3. **Triage-New-Issues App**: Apply a 'Triage' label to new issues using the [Triage New Issues App](https://github.com/apps/triage-new-issues). This helps in quickly identifying and categorizing new submissions for further action.
+**Triage-New-Issues App**: Apply a 'Triage' label to new issues using the [Triage New Issues App](https://github.com/apps/triage-new-issues). This helps in quickly identifying and categorizing new submissions for further action.
 
-**Managing Stale Issues**
+### Managing Stale Issues
 
-4. **Stale Issue Workflow**: Keeping issues open for too long without activity can clutter your helpdesk. To manage this, we implement a workflow to mark stale issues:
+**Stale Issue Workflow**: Keeping issues open for too long without activity can clutter your helpdesk. To manage this, we implement a workflow to mark stale issues:
    ```yaml
    name: 'Close stale issues and PRs'
    on:
@@ -245,15 +249,15 @@ requestInfoLabelToAdd: needs-more-info
 
 By integrating these tools and workflows, you create a dynamic and responsive helpdesk system within GitHub, capable of handling issues efficiently and ensuring nothing falls through the cracks.
 
-Header: "Harnessing Data: Implementing Analytics in Your GitHub Helpdesk"
+## Harnessing Data: Implementing Analytics in Your GitHub Helpdesk
 
 One of the advantages of professional helpdesk systems is their capability to provide analytics, such as resolution times and the duration for which issues remain open. While GitHub might not offer these features out-of-the-box, we can achieve similar analytics through a custom workflow.
 
-**Setting Up Monthly Issue Metrics**
+### Setting Up Monthly Issue Metrics
 
 This workflow is designed to run monthly and collect data on issues created and resolved within that period, providing valuable insights into the performance of your helpdesk system.
 
-1. **Workflow Configuration**:
+**Workflow Configuration**:
 {% raw %}
 ```yaml
 name: Monthly issue metrics
@@ -292,57 +296,57 @@ jobs:
 ```
 {% endraw %}
    
-   **Key Components**:
-   - **Date Calculation**: The workflow begins by calculating the date range for the previous month. This range is used to filter the issues for the metrics report.
-   - **Issue Metrics Tool**: Utilizing the 'github/issue-metrics@v2' action, the workflow gathers data on issues created within the specified date range.
-   - **Report Creation**: An issue is automatically created containing the metrics, which can then be labeled, assigned, and reviewed like any other issue.
+**Key Components**:
+- **Date Calculation**: The workflow begins by calculating the date range for the previous month. This range is used to filter the issues for the metrics report.
+- **Issue Metrics Tool**: Utilizing the 'github/issue-metrics@v2' action, the workflow gathers data on issues created within the specified date range.
+- **Report Creation**: An issue is automatically created containing the metrics, which can then be labeled, assigned, and reviewed like any other issue.
 
 This workflow transforms GitHub into a more robust helpdesk tool, providing monthly analytics similar to those offered by specialized helpdesk systems. The generated report gives a clear picture of helpdesk performance, helping identify areas for improvement. More information on this action and its capabilities can be found on the [GitHub Blog](https://github.blog/2023-07-19-metrics-for-issues-pull-requests-and-discussions/). By incorporating this workflow, you enhance the functionality of your GitHub helpdesk, leveraging data to drive efficiency and effectiveness.
 
-Header: "Automating Recurring Tasks: Workflow for Scheduled Issues"
+## Automating Recurring Tasks: Workflow for Scheduled Issues
 
 In the management of any helpdesk or support system, certain tasks are bound to recur regularly. These can range from routine checks to periodic backups. To handle such recurring issues efficiently within GitHub, we can leverage the power of automated workflows. This approach ensures that these tasks are consistently addressed without fail.
 
-**Creating a Workflow for Recurring Issues**
+### Creating a Workflow for Recurring Issues
 
 Here's an example of a workflow designed to create a new issue for quarterly checks of users and authorizations:
 
-1. **Workflow Definition**:
-   ```yaml
-   name: Quarterly check users and authorisations
-   on:
-     workflow_dispatch:    
-     schedule:
-       - cron: 0 12 1 */3 *
+**Workflow Definition**:
+```yaml
+name: Quarterly check users and authorisations
+on:
+  workflow_dispatch:    
+  schedule:
+    - cron: 0 12 1 */3 *
 
-   jobs:
-     create_issue:
-       name: Create issue - Quarterly check users and authorisations
-       runs-on: ubuntu-latest
-       steps:
-         - name: Create issue 
-           run: |
-             new_issue_url=$(gh issue create \
-               --title "$TITLE" \
-               --label "$LABELS" \
-               --body "$BODY" \
-               --assignee "$ASSIGNEE")
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-             GH_REPO: ${{ github.repository }}
-             TITLE: Quarterly check users and authorisations
-             LABELS: iso
-             ASSIGNEE: userX,userY
-             BODY: |
-               Perform the quarterly checks for users and the authorisations. See the ISMS for more details.
-             PINNED: false
-   ```
+jobs:
+  create_issue:
+    name: Create issue - Quarterly check users and authorisations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issue 
+        run: |
+          new_issue_url=$(gh issue create \
+            --title "$TITLE" \
+            --label "$LABELS" \
+            --body "$BODY" \
+            --assignee "$ASSIGNEE")
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: Quarterly check users and authorisations
+          LABELS: iso
+          ASSIGNEE: userX,userY
+          BODY: |
+            Perform the quarterly checks for users and the authorisations. See the ISMS for more details.
+          PINNED: false
+```
 
-   **Key Components**:
-   - **Cron Schedule**: Set to trigger quarterly (`0 12 1 */3 *`). This timing can be adjusted based on the frequency needed for the particular task.
-   - **Issue Creation Step**: Automates the creation of a new GitHub issue with specific details like title, labels, body content, and assignees.
+**Key Components**:
+- **Cron Schedule**: Set to trigger quarterly (`0 12 1 */3 *`). This timing can be adjusted based on the frequency needed for the particular task.
+- **Issue Creation Step**: Automates the creation of a new GitHub issue with specific details like title, labels, body content, and assignees.
 
-**Expanding the Workflow**
+### Expanding the Workflow
 
 The beauty of this system lies in its flexibility. By modifying the trigger and the content of the issue, and saving it as a new file in the `.github/workflows` folder, you can create workflows for various other recurring issues. This method is not only efficient but also ensures consistency and reliability in performing routine tasks that are crucial for your organization.
 
@@ -352,7 +356,7 @@ Implementing such automated workflows for recurring issues in your GitHub helpde
 
 In conclusion, leveraging GitHub for your internal helpdesk system offers numerous advantages, especially when considering the ecosystem and tooling already familiar to many teams. This approach not only streamlines internal support processes but also adds a layer of efficiency and integration that traditional helpdesk tools may not provide.
 
-**Key Advantages of Using GitHub for Internal Helpdesk:**
+### Key Advantages of Using GitHub for Internal Helpdesk:
 
 1. **Unified Ecosystem**: Staying within GitHub means no need to juggle between different platforms, reducing the learning curve and integration complexities.
 
@@ -364,17 +368,17 @@ In conclusion, leveraging GitHub for your internal helpdesk system offers numero
 
 5. **Project Boards for Visualization**: Employ GitHub's project boards for a visual representation of tasks, allowing you to effortlessly manage and move items through to completion.
 
-**External Use Considerations:**
+### External Use Considerations:
 
 While GitHub excels for internal use, there are challenges when considering external helpdesk applications. Non-GitHub users cannot create issues, and external access to a private helpdesk repository is not advisable. Additionally, GitHub doesn't natively handle email-based ticket creation or manage attachments from external sources effectively.
 
-**Solution for External Use: Scitor.io**
+### Solution for External Use: Scitor.io
 
 For those seeking to extend GitHub's capabilities to an external audience, [Scitor.io](https://www.scitor.io) offers a solution. It transforms GitHub into a more traditional helpdesk system, bridging the gap for external user interactions.
 
-**Wrapping Up:**
+### Wrapping Up
 
 For internal team use, GitHub stands out as a practical, cost-effective, and efficient tool for helpdesk management. It consolidates various aspects of issue tracking and resolution into a single, integrated platform, familiar to most developers and IT professionals. By following the outlined steps and considerations, you can effectively transform GitHub into a powerful tool for managing your internal helpdesk needs, harnessing its full potential to streamline and enhance your support processes.
 
-Photo by <a href="https://unsplash.com/@cdc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">CDC</a> on <a href="https://unsplash.com/photos/man-in-black-and-white-checkered-dress-shirt-using-computer-_XLJy3h77cw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+> Photo by <a href="https://unsplash.com/@cdc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">CDC</a> on <a href="https://unsplash.com/photos/man-in-black-and-white-checkered-dress-shirt-using-computer-_XLJy3h77cw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
   
