@@ -108,7 +108,7 @@ social:
 
 # Analytics
 analytics:
-  provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
+  provider               : false #"google-gtag" # false (default), "google", "google-universal", "custom"
   google:
     tracking_id          : "G-6BE98RVQFT" # Replace this with your ID, or delete
 
