@@ -170,7 +170,7 @@ body:
 
 **Configuring the Template Selector**
 
-1. **Create a config.yml File**: This file goes in the same `.github/ISSUE_TEMPLATE` folder. It's used to configure how users select an issue template.
+**Create a config.yml File**: This file goes in the same `.github/ISSUE_TEMPLATE` folder. It's used to configure how users select an issue template.
 For example, here's a sample config.yml file:
 
 ```yaml
@@ -181,11 +181,11 @@ contact_links:
     about: For customer issues.
 ```
 
-2. **Configuration Options**: 
-   - `blank_issues_enabled: true` - This setting allows users to still create blank issues. However, disabling this feature means users can only use your predefined templates.
-   - **Contact Links**: These are additional options you can provide for users. For example:
-      - Freshdesk for customer issues with a direct link to your Freshdesk dashboard.
-      - Slack for devteam issues with a direct link to your Slack workspace.
+**Configuration Options**: 
+- `blank_issues_enabled: true` - This setting allows users to still create blank issues. However, disabling this feature means users can only use your predefined templates.
+- **Contact Links**: These are additional options you can provide for users. For example:
+  - Freshdesk for customer issues with a direct link to your Freshdesk dashboard.
+  - Slack for devteam issues with a direct link to your Slack workspace.
 
    These links not only guide users to the right resources but also help in segregating different types of issues efficiently.
 
