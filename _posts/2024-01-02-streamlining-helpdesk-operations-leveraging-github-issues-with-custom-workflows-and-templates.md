@@ -168,7 +168,18 @@ body:
       required: false
   ```
 
-**Configuring the Template Selector**
+### Enhancing Clarity with Emoticons in Titles
+
+- **Visual Differentiation**: Incorporating emoticons in issue template titles can significantly aid in distinguishing between different types of issues, especially in a helpdesk context.
+- **Examples**:
+  - Use a 💻 emoji for hardware-related issues.
+  - A 🔑 emoji could denote account-related problems.
+- **Immediate Recognition**: Emoticons allow team members to quickly recognize the category of an issue, aiding in the swift identification and prioritization of tasks.
+- **Consistency**: Maintain consistency in the use of emoticons across all templates to ensure clarity and prevent confusion.
+
+By integrating emoticons into your issue titles, you bring an element of visual distinction to your GitHub helpdesk system. This not only makes the issue list more engaging but also enhances the efficiency and intuitiveness of issue categorization and management.
+
+### Configuring the Template Selector
 
 **Create a config.yml File**: This file goes in the same `.github/ISSUE_TEMPLATE` folder. It's used to configure how users select an issue template.
 For example, here's a sample config.yml file:
@@ -229,6 +240,7 @@ requestInfoLabelToAdd: needs-more-info
 ### Managing Stale Issues
 
 **Stale Issue Workflow**: Keeping issues open for too long without activity can clutter your helpdesk. To manage this, we implement a workflow to mark stale issues:
+
    ```yaml
    name: 'Close stale issues and PRs'
    on:
@@ -245,7 +257,7 @@ requestInfoLabelToAdd: needs-more-info
              days-before-stale: 30
              days-before-close: 5
    ```
-   This workflow runs daily, identifying issues open for more than 30 days and marking them as stale. This process helps maintain a cleaner, more manageable issue list and ensures issues don't linger unresolved.
+This workflow runs daily, identifying issues open for more than 30 days and marking them as stale. This process helps maintain a cleaner, more manageable issue list and ensures issues don't linger unresolved. You do want to consider the impact of closing stale issues, however. For example, if an issue is still relevant, you might want to keep it open, even if it's stale. However, this can help with SLA compliance and ensure issues are addressed in a timely manner.
 
 By integrating these tools and workflows, you create a dynamic and responsive helpdesk system within GitHub, capable of handling issues efficiently and ensuring nothing falls through the cracks.
 
@@ -367,6 +379,19 @@ In conclusion, leveraging GitHub for your internal helpdesk system offers numero
 4. **Customizable Workflows and Apps**: The ability to add workflows and apps further tailors the experience to your organization's specific needs.
 
 5. **Project Boards for Visualization**: Employ GitHub's project boards for a visual representation of tasks, allowing you to effortlessly manage and move items through to completion.
+
+However, it's important to note a key aspect regarding issue visibility.
+
+**Visibility of Issues:**
+- In GitHub, issues in a repository are visible to all team members with write access, as this access level is required to create issues. 
+- Consequently, all tickets are visible to these team members. While this promotes transparency and team collaboration, it also means sensitive information could potentially be exposed to a wider internal audience.
+- Remember, as this is an internal system, it's generally expected that confidential or sensitive information should not be shared in these tickets. Nonetheless, it's vital to consider this aspect of visibility.
+
+**Securing Your Helpdesk:**
+- If complete privacy for issues is a priority, consider securing the repository. This adds a layer of confidentiality but requires alternative methods for issue creation.
+- One such method is using email integrations for issue creation, like the solution offered by [scitor.io](https://www.scitor.io). This allows for a more controlled and private submission of issues while still benefiting from GitHub's issue management capabilities.
+
+By adding these considerations into your strategy, you can tailor your GitHub helpdesk to meet both the operational and privacy needs of your organization. This enhanced approach ensures that you not only leverage GitHub for its efficiency and familiarity but also maintain the necessary level of security and privacy for internal operations.
 
 ### External Use Considerations:
 
