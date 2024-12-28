@@ -255,13 +255,22 @@
         </li>
       {% endif %}
       
-        {% if author.mastodon %}
+      {% if author.mastodon %}
         <li>
           <a href="https://{{ author.mastodon}}" rel="me nofollow noopener noreferrer" itemprop="sameAs">
             <i class="fab fa-fw fa-mastodon" aria-hidden="true"></i><span class="label">{{ author.mastodon }}</span>
           </a>
         </li>
       {% endif %}
+
+      {% if author.bluesky %}
+      <li>
+        <a href="https://{{ author.bluesky}}" rel="me nofollow noopener noreferrer" itemprop="sameAs">
+          <i class="fab fa-fw fa-bluesky" aria-hidden="true"></i><span class="label">{{ author.bluesky }}</span>
+        </a>
+      </li>
+      {% endif %}
+
 
       {% include author-profile-custom-links.html %}
     </ul>
