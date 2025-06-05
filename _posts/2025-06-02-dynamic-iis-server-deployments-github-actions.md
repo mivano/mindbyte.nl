@@ -8,6 +8,8 @@ tags:
   - aws
   - devops
   - self-hosted-runners
+header:
+  teaser: https://mindbyte.nl/images/github-matrix.png
 slug: dynamic-iis-server-deployments-github-actions
 ---
 
