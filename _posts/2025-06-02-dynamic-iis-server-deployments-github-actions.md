@@ -11,8 +11,6 @@ tags:
 slug: dynamic-iis-server-deployments-github-actions
 ---
 
-## Introduction
-
 When we began migrating our application infrastructure to the cloud, we relied on AWS and traditional Windows servers running IIS. Although containers and Kubernetes dominate today’s conversations, there are organizations that still depend on familiar, “old-school” architectures. In one recent project, we found ourselves needing to deploy a web application across multiple IIS servers behind an AWS load balancer. Our challenge was simple in statement but complex in execution: how do you run the same GitHub Actions deployment workflow on every server in a scalable, maintainable way?
 
 ## Background
@@ -21,7 +19,7 @@ Our environment consisted of a load balancer distributing traffic to several Win
 
 To deploy across the entire group of servers with the same tag (for example, all IIS-Server machines), we needed the workflow to run on each of them, not just on a single available runner. While setting `runs-on: [self-hosted, <label>]` directs GitHub Actions to run the job on a runner matching that label, it does not instruct it to execute on all such servers simultaneously.
 
-As documented by GitHub, `runs-on` selects only one matching runner; to execute a job on multiple machines, you need to use a matrix strategy.
+As [documented by GitHub](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), `runs-on` selects only one matching runner; to execute a job on multiple machines, you need to use a matrix strategy.
 
 Hard-coding runner names would defeat our goal of dynamic scaling, since servers could be added or removed without updating the workflow.
 
