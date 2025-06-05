@@ -23,7 +23,7 @@ As [documented by GitHub](https://docs.github.com/en/actions/writing-workflows/w
 
 Hard-coding runner names would defeat our goal of dynamic scaling, since servers could be added or removed without updating the workflow.
 
-We looked for an approach that would adapt dynamically as servers joined or left our environment. Azure DevOps offers “deployment groups,” but GitHub Actions does not include a direct equivalent. Instead, we needed to leverage the GitHub API to query our organization’s runners at runtime, filter them by environment labels, and build a dynamic matrix of targets for our workflow. This blog post describes the story of how we achieved that goal.
+We looked for an approach that would adapt dynamically as servers joined or left our environment. Azure DevOps offered “[deployment groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/deploying-azure-vms-deployment-groups?view=azure-devops)”, but GitHub Actions does not include a direct equivalent. Instead, we needed to leverage the GitHub API to query our organization’s runners at runtime, filter them by environment labels, and build a dynamic matrix of targets for our workflow. This blog post describes the story of how we achieved that goal.
 
 ## Gathering Runner Information
 
