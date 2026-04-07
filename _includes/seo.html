@@ -63,23 +63,23 @@
 
 {% if site.twitter.username %}
   <meta name="twitter:site" content="@{{ site.twitter.username | replace: "@", "" }}">
-  <meta name="twitter:title" content="{{ page_title }}">
-  <meta name="twitter:description" content="{{ seo_description }}">
-  <meta name="twitter:url" content="{{ canonical_url }}">
+{% endif %}
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ seo_description }}">
+<meta name="twitter:url" content="{{ canonical_url }}">
 
-  {% if page_large_image %}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ page_large_image }}">
-  {% else %}
-    <meta name="twitter:card" content="summary">
-    {% if page_teaser_image %}
-      <meta name="twitter:image" content="{{ page_teaser_image }}">
-    {% endif %}
+{% if page_large_image %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ page_large_image }}">
+{% else %}
+  <meta name="twitter:card" content="summary">
+  {% if page_teaser_image %}
+    <meta name="twitter:image" content="{{ page_teaser_image }}">
   {% endif %}
+{% endif %}
 
-  {% if author_twitter %}
-    <meta name="twitter:creator" content="@{{ author_twitter }}">
-  {% endif %}
+{% if author_twitter %}
+  <meta name="twitter:creator" content="@{{ author_twitter }}">
 {% endif %}
 
 {% if page.date %}
