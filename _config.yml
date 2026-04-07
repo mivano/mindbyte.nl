@@ -13,7 +13,7 @@ title                    : "MindByte"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Michiel van Oudheusden" # &name is a YAML anchor which can be *referenced later
-description              : &description "Microsoft .NET consultant, developer, architect. Focus on ALM, DevOps, APIs, Azure and everything around it."
+description              : &description "CTO at Freelance.nl, founder of leftsize.com and scitor.io"
 url                      : https://mindbyte.nl # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "mivano/mindbyte.nl"
@@ -117,7 +117,7 @@ analytics:
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
   avatar           : "/images/profile.jpg"
-  bio              : "Microsoft .NET consultant, developer, architect. Focus on ALM, DevOps, APIs, Azure and everything around it."
+  bio              : "CTO at Freelance.nl, founder of leftsize.com and scitor.io"
   location         : "The Netherlands"
   email            :
   uri              : "https://mindbyte.nl"
